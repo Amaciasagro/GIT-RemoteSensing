@@ -1,0 +1,54 @@
+import ee
+import geemap
+import pandas as pd
+
+# 1. Configuración de geometría y centro
+roi_info = Draw_Map.user_roi.getInfo()
+lote_geom = ee.Geometry(roi_info['geometry'] if 'geometry' in roi_info else roi_info)
+centro = lote_geom.centroid(maxError=1)
+centro_coords = centro.getInfo()['coordinates']
+centro_mapa = [centro_coords[1], centro_coords[0]] 
+
+# 2. Fechas dinámicas
+fecha_fin = pd.Timestamp.today()
+fecha_inicio = fecha_fin - pd.DateOffset(years=3)
+
+print(f"📡 Descargando datos desde {fecha_inicio.strftime('%Y-%m-%d')} hasta {fecha_fin.strftime('%Y-%m-%d')}...")
+
+# 3. Colección y cálculo de índices
+def add_indices(image):
+    ndvi = image.normalizedDifference(['B8', 'B4']).rename('NDVI')
+    lai = ndvi.multiply(3.618).subtract(0.118).rename('LAI')
+    return image.addBands([ndvi, lai]).copyProperties(image, ['system:time_start'])
+
+s2_col = (ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED")
+          .filterBounds(lote_geom)
+          .filterDate(fecha_inicio.strftime('%Y-%m-%d'), fecha_fin.strftime('%Y-%m-%d'))
+          .filter(ee.Filter.lt('CLOUDY_PIXEL_PERCENTAGE', 30))
+          .map(add_indices))
+
+# 4. Extracción de estadísticas
+def extract_stats(image):
+    mean_dict = image.select(['NDVI', 'LAI']).reduceRegion(
+        reducer=ee.Reducer.mean(),
+        geometry=lote_geom,
+        scale=20,          # <-- OPTIMIZADO PARA MAYOR VELOCIDAD
+        maxPixels=1e9
+    )
+    date = ee.Date(image.get('system:time_start')).format('YYYY-MM-dd')
+    return ee.Feature(None, {'date': date, 'NDVI': mean_dict.get('NDVI'), 'LAI': mean_dict.get('LAI')})
+
+ts_features = ee.FeatureCollection(s2_col.map(extract_stats))
+ts_list = ts_features.getInfo()['features']
+
+# 5. Estructurado en Pandas
+datos = [{'Fecha': pd.to_datetime(f['properties']['date']), 
+          'NDVI': f['properties']['NDVI'], 
+          'LAI': f['properties']['LAI']} 
+         for f in ts_list if f['properties'].get('NDVI') is not None]
+
+df = pd.DataFrame(datos)
+df.set_index('Fecha', inplace=True)
+df_mensual = df.resample('MS').mean().dropna()
+
+print("✅ Datos procesados y listos en memoria.")
