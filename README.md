@@ -11,7 +11,7 @@
   </a>
   
   <a href="https://github.com/Amaciasagro" target="_blank">
-    <img src="https://img.shields.io/badge/Mis_Repositorios-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub"/>
+    <img src="https://img.shields.io/badge/github-repo-blue?logo=github" alt="GitHub"/>
   </a>
   
   <a href="https://www.linkedin.com/in/ariel-mac%C3%ADas-509b0718a/" target="_blank">
