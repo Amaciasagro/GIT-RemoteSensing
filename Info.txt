@@ -1,0 +1,8 @@
+GEEPROJECT = my-project-12126-484118
+Associated email = amacias.agro@mgail.com
+
+To run Dashboard:
+PS C:\ARIEL\Software\GIT\repo\Dashboard.Streamlit> C:\Users\ariel\AppData\Local\Programs\Python\Python314\python.exe -m streamlit run tu_archivo.py
+
+   
+
