@@ -1,63 +1,60 @@
-<!-- ### I'm Ariel Macías👋
-### Agronomist | GIS & Remote sensing Analyst
-
-## 🛠️ Tools & Tech
-![Python](https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white) ![Google_Earth_Engine](https://img.shields.io/badge/Google_Earth_Engine-4285F4?style=flat&logo=google-earth&logoColor=white) ![QGIS](https://img.shields.io/badge/qgis-%2393b023?&style=flat-square&logo=qgis&logoColor=white)
-### 🤝 Let's get in touch:
-
-<p align="left">
-  <a href="mailto:amacias.agro@gmail.com">
-    <img src="https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white" alt="Email"/>
-  </a>
-  
-  <a href="https://github.com/Amaciasagro" target="_blank">
-    <img src="https://img.shields.io/badge/github-repo-blue?logo=github" alt="GitHub"/>
-  </a>
-  
-  <a href="https://www.linkedin.com/in/ariel-mac%C3%ADas-509b0718a/" target="_blank">
-    <img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn"/>
-  </a>
-</p> -->
 # 🌍 AgTech & GeoSpatial Data Science Portfolio
 
 **Transformando datos espaciales y climáticos en soluciones agronómicas inteligentes.**
 
-Este repositorio contiene proyectos y flujos de trabajo (*pipelines*) orientados a la agricultura de precisión, modelado agrometeorológico y desarrollo de Productos Mínimos Viables (MVPs) para el sector AgTech. 
+Este repositorio centraliza mis desarrollos en el ámbito de la **Agricultura Digital**, con un enfoque en el procesamiento de datos multiespectrales, modelado agrometeorológico y la creación de herramientas interactivas para la toma de decisiones a campo. 
 
-Como **Ingeniero Agrónomo y Analista GIS**, mi enfoque es utilizar programación y análisis espacial para traducir necesidades agronómicas complejas en herramientas tecnológicas funcionales.
+Soy **Ingeniero Agrónomo** y **Analista SIG**, especializado en traducir necesidades agronómicas complejas en flujos de trabajo (*pipelines*) automatizados y productos mínimos viables (MVPs).
 
 ---
 
 ## 🚀 Proyectos Destacados
 
-### 1. 🌦️ AgroClimatic Data Pipeline (`/Climate`)
-Motor de extracción y procesamiento de variables agrometeorológicas utilizando automatización en Python.
+### 🌦️ [AgroClimatic Data Pipeline](https://github.com/Amaciasagro/GIT-RemoteSensing/blob/master/02_Climate_Analyzer/README.md)
+Motor automatizado en Python para la extracción y procesamiento de variables climáticas satelitales.
 * **Tecnologías:** Google Earth Engine (GEE), Python (Pandas, Shapely).
-* **Impacto:** Modelo híbrido que cruza datos de reanálisis termodinámico (ERA5) con precipitaciones calibradas por estaciones (CHIRPS) para el cálculo preciso de la Evapotranspiración (ETo) y balances hídricos a nivel de lote.
+* **Impacto:** Implementación de un modelo algorítmico híbrido (ERA5 + CHIRPS) que optimiza la precisión en el cálculo de la Evapotranspiración (ETo de Penman-Monteith) y balances hídricos a escala de lote.
+* ![Preview](assets/clima.png) ### 🗺️ [Soils Spatial Analysis Module](https://github.com/Amaciasagro/GIT-RemoteSensing/blob/master/01_USA_Soils_analysis/README.md)
+Flujo de geoprocesamiento vectorial y análisis espacial avanzado para cartografía edáfica.
+* **Tecnologías:** GeoPandas, Matplotlib, APIs de datos de suelos.
+* **Impacto:** Sistema de consulta automatizada y estructuración de bases de datos de suelos (integrando datos de EE.UU.). Facilita la visualización y exportación de variables críticas para el diagnóstico territorial y la categorización de ambientes.
+* ![Preview](assets/suelos.png)
 
-### 2. 📊 AgTech Interactive Dashboard (`/Dashboard.Streamlit`)
-MVP diseñado para la visualización dinámica de datos de campo y soporte en la toma de decisiones.
-* **Tecnologías:** Streamlit, Python, visualización de datos.
-* **Impacto:** Interfaz de usuario (UI) funcional que permite a los usuarios interactuar con los datos agrícolas sin necesidad de conocimientos de programación, facilitando la interpretación de métricas clave.
+### 🌱 [Crop Remote Sensing Models](https://github.com/Amaciasagro/GIT-RemoteSensing/blob/master/03_CropMonitor/README.md)
+Módulos analíticos orientados al monitoreo fenológico y estimación de biomasa mediante teledetección.
+* **Tecnologías:** Python, procesamiento de bandas multiespectrales.
+* **Impacto:** Cálculo masivo de índices vegetativos (NDVI, NDWI, EVI, SAVI) y modelado del Índice de Área Foliar (IAF) para la detección temprana de anomalías y caracterización productiva.
+* ![Preview](assets/ndvi.png)
 
-### 3. 🌱 Análisis Espacial y Modelado de Cultivos
-Scripts dedicados al análisis de teledetección y cartografía de suelos.
-* **Archivos clave:** `01_analisis_suelos_geonode.ipynb`, `02_modelado_indice_area_foliar.ipynb`.
-* **Tecnologías:** GeoPandas, Folium, Plotly.
-* **Impacto:** Procesamiento de datos vectoriales y raster (ej. índices vegetativos como NDVI/LAI) para la categorización de ambientes y optimización del manejo agronómico.
+### 📊 [AgTech Interactive Dashboard](https://github.com/Amaciasagro/GIT-RemoteSensing/tree/master/Dashboard.Streamlit)
+Despliegue de una WebApp (MVP) para la centralización operativa de datos agronómicos.
+* **Tecnologías:** Streamlit, Folium, Plotly, Python.
+* **Impacto:** Interfaz gráfica (UI/UX) que traduce métricas climáticas y espaciales complejas en mapas dinámicos interactivos, democratizando el acceso a los datos para usuarios no técnicos.
+* ![Preview](assets/dashboard.png)
 
 ---
 
 ## 🛠️ Stack Tecnológico
 
-* **Lenguajes:** Python (Avanzado).
-* **Ciencia de Datos & SIG:** GeoPandas, Google Earth Engine API, Shapely, Pandas.
-* **Visualización:** Folium, Plotly, Streamlit.
-* **Entornos & Despliegue:** Jupyter, VS Code, Git/GitHub, manejo de entornos virtuales.
+* **Lenguajes & Entornos:** Python (Avanzado), Jupyter Notebooks, VS Code (Local), Google Colab (Cloud).
+* **Ciencia de Datos & SIG:** GeoPandas, GEE API, Pandas, Shapely, QGIS.
+* **Visualización:** Matplotlib, Folium, Streamlit, Plotly.
+* **Control de Versiones:** Git & GitHub (Desarrollo colaborativo y versionado de código).
+
+---
+
+## 🎓 Formación y Certificaciones
+* **Ingeniero Agrónomo** (FCA-UNNE).
+* **Auxiliar Analista SIG** (Instituto Superior Escuela de Robótica e Inglés).
+* **Fundamentals of Remote Sensing** (ARSET - NASA).
+* **Análisis de Datos con Python orientado al agro** (UNC).
 
 ---
 
 ## 📬 Contacto
-* **Ubicación:** Corrientes, Argentina (Disponible para roles remotos).
-* **Perfil:** [www.linkedin.com/in/ariel-macías-509b0718a]
+* **Ubicación:** Corrientes, Argentina (Disponible para proyectos globales y remotos).
+* **LinkedIn:** [Tu Perfil de LinkedIn](https://www.linkedin.com/in/ariel-macías-509b0718a)
+* **Email:** Amacias.agro@gmail.com
 
+---
+*Este repositorio es mantenido por Ariel Jorge Macías. El código está orientado a la reproducibilidad científica y el escalado de soluciones AgTech.*
