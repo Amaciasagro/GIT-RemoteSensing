@@ -59,4 +59,5 @@ Scripts dedicados al análisis de teledetección y cartografía de suelos.
 
 ## 📬 Contacto
 * **Ubicación:** Corrientes, Argentina (Disponible para roles remotos).
-* **Perfil:** [Enlace a tu LinkedIn]
+* **Perfil:** [www.linkedin.com/in/ariel-macías-509b0718a]
+
