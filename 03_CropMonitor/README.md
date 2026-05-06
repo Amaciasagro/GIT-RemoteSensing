@@ -1,4 +1,4 @@
-# 🌿 LAI & NDVI Crop Monitor — v3
+# 🌿 Crop Monitor (IAF & Vegetation indices)
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Amaciasagro/GIT-RemoteSensing/blob/master/LAI_v3.ipynb)
 

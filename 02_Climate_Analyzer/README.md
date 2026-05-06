@@ -1,4 +1,4 @@
-# 🌦️ Climate Analyzer — v2
+# 🌦️ Climate Analyzer 
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Amaciasagro/GIT-RemoteSensing/blob/master/Climate/Climate_td_v2.ipynb)
 
