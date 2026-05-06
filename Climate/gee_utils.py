@@ -46,10 +46,11 @@ def _extraer_feature(img: ee.Image, geometry: ee.Geometry) -> ee.Feature:
     """
     fecha   = img.date().format("YYYY-MM-dd")
     valores = img.select(ERA5_BANDS).reduceRegion(
-        reducer  = ee.Reducer.mean(),   # Media sobre el área del lote (no centroide)
-        geometry = geometry,
-        scale    = ERA5_SCALE,          # Resolución nativa ERA5-Land (~9 km)
-        maxPixels= 1e6
+        reducer    = ee.Reducer.mean(),   # Media sobre el área del lote (no centroide)
+        geometry   = geometry,
+        scale      = ERA5_SCALE,          # Resolución nativa ERA5-Land (~9 km)
+        maxPixels  = 1e8,
+        bestEffort = True,
     )
 
     def get(band):
@@ -106,13 +107,21 @@ def descargar_serie(lote_geom: ee.Geometry, hist_start: str, hist_end: str) -> p
         features = (
             era5
             .map(lambda img: _extraer_feature(img, lote_geom))
-            .filter(ee.Filter.notNull(["t_med", "precip"]))
+            .filter(ee.Filter.notNull(["fecha"]))
             .getInfo()["features"]
         )
     except ee.EEException as e:
         raise RuntimeError(f"❌ Error al consultar GEE: {e}")
 
+    if not features:
+        raise RuntimeError(
+            f"❌ No se descargaron datos ERA5 para el lote en el período "
+            f"{hist_start} → {hist_end}. Verificá la geometría y conexión a GEE."
+        )
+
     df = pd.DataFrame([f["properties"] for f in features])
+    if "fecha" not in df.columns:
+        raise RuntimeError("❌ La serie ERA5 no contiene la columna 'fecha'.")
     df["fecha"] = pd.to_datetime(df["fecha"])
     df = df.sort_values("fecha").reset_index(drop=True)
 
