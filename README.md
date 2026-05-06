@@ -55,8 +55,8 @@ Despliegue de una WebApp (MVP) para la centralización operativa de datos agron�
 
 ## 📬 Contacto
 * **Ubicación:** Corrientes, Argentina (Disponible para proyectos globales y remotos).
-* **LinkedIn:** [Tu Perfil de LinkedIn](https://www.linkedin.com/in/ariel-macías-509b0718a)
-* **Email:** Amacias.agro@gmail.com
+* **LinkedIn:** [Ariel Macías](https://www.linkedin.com/in/ariel-macías-509b0718a)
+* **Email:** amacias.agro@gmail.com
 
 ---
 *Este repositorio es mantenido por Ariel Jorge Macías. El código está orientado a la reproducibilidad científica y el escalado de soluciones AgTech.*
