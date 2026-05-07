@@ -1,0 +1,5 @@
+{
+    "jupyter.disableJupyterAutoStart": true,
+    "jupyter.allowUnauthorizedRemoteConnection": true,
+    "jupyter.exportWithOutputEnabled": true
+}
