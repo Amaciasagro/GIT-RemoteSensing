@@ -41,6 +41,26 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
+# ── Marca de Agua ──
+st.markdown("""
+    <style>
+    .watermark {
+        position: fixed;
+        bottom: 15px;
+        right: 15px;
+        opacity: 0.5;
+        font-size: 14px;
+        color: #7a99b8;
+        z-index: 9999;
+        pointer-events: none;
+        background-color: rgba(13, 21, 32, 0.7);
+        padding: 5px 10px;
+        border-radius: 5px;
+    }
+    </style>
+    <div class="watermark">© 2026 Ariel Macías | Ingeniero agrónomo & Analista SIG</div>
+""", unsafe_allow_html=True)
+
 # ════════════════════════════════════════════════════════════
 # CONSTANTES DE VISUALIZACIÓN
 # ════════════════════════════════════════════════════════════
