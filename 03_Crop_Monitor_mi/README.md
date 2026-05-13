@@ -1,53 +1,25 @@
-# 🌿 Crop Monitor — LAI & NDVI
+content = """# 🌿 Crop Monitor — Dashboard Interactivo (LAI & NDVI)
 
-Dashboard interactivo de monitoreo de cultivos con Sentinel-2 y Google Earth Engine.
+Este Dashboard es una herramienta profesional de monitoreo fenológico diseñada para agrónomos y especialistas en Teledetección. Permite analizar la evolución de cultivos utilizando imágenes **Sentinel-2 SR Harmonized** procesadas en tiempo real mediante **Google Earth Engine**.
 
-## Instalación local
+## 🚀 Funcionalidades Principales
+- **Curva Fenológica Interactiva:** Visualización de la evolución mensual de índices (NDVI, LAI, SAVI, EVI, NDWI) mediante gráficos de Plotly.
+- **Sincronización Temporal:** Al navegar por la curva de tiempo, el mapa actualiza automáticamente tanto el índice seleccionado como la imagen satelital base del lote.
+- **Satélite Dinámico Mensual:** Visualización en Color Real (RGB) de la mejor imagen del mes seleccionado (filtrada por nubosidad), permitiendo validar visualmente los datos de los índices.
+- **Mapas Comparativos (DualMap):** Capacidad de comparar dos índices diferentes (ej. NDVI vs LAI) de forma sincronizada en pantalla dividida.
+- **Gestión de Lotes:** Dibujo manual de polígonos directamente en el mapa o carga de archivos locales (.shp en .zip o .geojson).
 
-```bash
-pip install -r requirements.txt
-streamlit run app.py
-```
+## 🛠️ Tecnologías Utilizadas
+| Tecnología | Uso en el Proyecto |
+| :--- | :--- |
+| **Streamlit** | Interfaz de usuario y despliegue web. |
+| **Google Earth Engine (GEE)** | Procesamiento geoespacial en la nube y acceso a Sentinel-2. |
+| **Folium / Streamlit-Folium** | Visualización de mapas interactivos y capas ráster. |
+| **Plotly** | Gráficos dinámicos y análisis de series temporales. |
+| **Geopandas / Shapely** | Gestión y manipulación de datos vectoriales. |
 
-La primera vez que corras la app, GEE va a pedir autenticación.
-Si ya autenticaste con `earthengine authenticate`, no hace falta hacer nada extra.
-
-## Deploy en Streamlit Cloud
-
-1. Subí el repositorio a GitHub
-2. Creá la app en [share.streamlit.io](https://share.streamlit.io)
-3. Configurá los secrets en el panel de Streamlit Cloud:
-
-```toml
-# .streamlit/secrets.toml
-[gee]
-project = "tu-proyecto-gee"
-
-# Opcional: cuenta de servicio (recomendado para producción)
-key_json = '''
-{
-  "type": "service_account",
-  "project_id": "...",
-  "client_email": "...",
-  ...
-}
-'''
-```
-
-## Flujo de uso
-
-1. Ingresá el **Proyecto GEE** en la barra lateral
-2. Configurá los parámetros (años, nubes, k, L)
-3. Dibujá el lote en el mapa o subí un `.shp`/`.geojson`
-4. Presioná **Analizar lote**
-5. Explorá la curva fenológica y los mapas por mes
-
-## Índices calculados
-
-| Índice | Descripción |
-|--------|-------------|
-| NDVI   | Vigor vegetativo general |
-| LAI    | Área foliar (Beer-Lambert) |
-| EVI    | Vigor corregido por aerosoles y suelo |
-| SAVI   | NDVI ajustado por suelo expuesto |
-| NDWI   | Contenido de agua en canopeo/suelo |
+## 💻 Instalación y Uso Local
+1. Clona este repositorio.
+2. Crea un entorno virtual e instala las dependencias:
+   ```bash
+   pip install -r requirements.txt
