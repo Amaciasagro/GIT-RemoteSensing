@@ -23,3 +23,16 @@ Este Dashboard es una herramienta profesional de monitoreo fenológico diseñada
 2. Crea un entorno virtual e instala las dependencias:
    ```bash
    pip install -r requirements.txt
+3. Configura tus credenciales de GEE en .streamlit/secrets.toml.
+4. Ejecuta la aplicación:
+   streamlit run app.py
+
+🌐 DESPLIEGUE EN STREAMLIT CLOUD
+Para desplegar esta app de forma segura, asegúrate de:
+1. Tener un archivo .gitignore que incluya .streamlit/secrets.toml y cualquier archivo de credenciales locales.
+2. Subir el código a GitHub.
+3. En el panel de Advanced Settings de Streamlit Cloud, copiar y pegar el contenido de tus secretos para que la conexión con GEE funcione en la nube.
+
+---
+Autor: Ariel Macías | Agrónomo · GIS & Remote Sensing
+
