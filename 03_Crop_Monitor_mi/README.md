@@ -1,4 +1,4 @@
-content = """# 🌿 Crop Monitor — Dashboard Interactivo (LAI & NDVI)
+"""# 🌿 Crop Monitor — Dashboard Interactivo (LAI & NDVI)
 
 Este Dashboard es una herramienta profesional de monitoreo fenológico diseñada para agrónomos y especialistas en Teledetección. Permite analizar la evolución de cultivos utilizando imágenes **Sentinel-2 SR Harmonized** procesadas en tiempo real mediante **Google Earth Engine**.
 
