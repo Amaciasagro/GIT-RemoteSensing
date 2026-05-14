@@ -1,147 +1,153 @@
-# 🌦️ Climate Analyzer 
+# 🌦️ Climate Analyzer — Dashboard Climático Interactivo
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Amaciasagro/GIT-RemoteSensing/blob/master/Climate/Climate_td_v2.ipynb)
-
-**Autor:** Ariel Macías | Agrónomo · GIS & Remote Sensing
-
-Herramienta interactiva para análisis climático agronómico sobre un lote agrícola, usando datos **ERA5-Land** (ECMWF) vía **Google Earth Engine**. Calcula variables climáticas diarias y mensuales, ETo por Penman-Monteith FAO-56, balance hídrico y grados día acumulados, con visualizaciones interactivas.
+**Análisis climático profesional sobre lotes agrícolas** utilizando datos **ERA5-Land (ECMWF)** procesados en tiempo real vía **Google Earth Engine**. Diseñado para agrónomos y especialistas en Teledetección que necesitan caracterizar el clima de un lote sin escribir código.
 
 ---
 
-## 🔄 Flujo de trabajo
+## 🎬 Demo en video
 
-| Paso | Celda | Descripción |
-|------|-------|-------------|
-| 0 | Configuración | Proyecto GEE y coordenadas del mapa inicial |
-| 1 | Inicialización | Autenticación GEE · Dibujo del lote o carga de Shapefile |
-| 2 | Análisis completo | Descarga ERA5 · Métricas agronómicas · Gráficos interactivos |
+<!-- Cuando tengas el video listo, reemplazá VIDEO_ID con tu ID de YouTube y descomentá estas líneas: -->
+<!-- [![Demo Climate Analyzer](https://img.youtube.com/vi/VIDEO_ID/maxresdefault.jpg)](https://www.youtube.com/watch?v=VIDEO_ID) -->
+> 📹 *Próximamente — flujo completo: definición del lote, descarga ERA5, métricas agronómicas y paneles interactivos.*
 
 ---
 
-## 📋 Variables extraídas de ERA5-Land
+## ✨ Funcionalidades
 
-| Variable | Descripción |
-|----------|-------------|
-| Precipitación | Suma diaria (mm) |
-| T. máx / mín / media | Temperatura a 2 m (°C) |
-| Punto de rocío | → Humedad relativa estimada (%) |
-| Radiación solar | Descendente superficial (MJ/m²/día) |
-| Viento (u, v) | Componentes a 10 m → velocidad escalar (m/s) |
-| ET vegetación | Evapotranspiración real ERA5 (mm) |
-| **ETo Penman-Monteith** | Calculada con FAO-56 a partir de las anteriores |
-| **Balance hídrico** | Lluvia acum. − ETo acum. (mm) |
-| **GDA** | Grados día acumulados sobre T_BASE (definida en `config.py`) |
+**Variables ERA5-Land extraídas**
+Precipitación diaria, temperatura máx/mín/media, punto de rocío, radiación solar, componentes de viento y evapotranspiración real — todas promediadas sobre el área exacta del lote.
+
+**Métricas agronómicas calculadas**
+- **ETo Penman-Monteith FAO-56** — evapotranspiración de referencia diaria (mm)
+- **Humedad Relativa** estimada a partir del punto de rocío (%)
+- **Balance Hídrico** acumulado — Lluvia − ETo (mm)
+- **Grados Día Acumulados (GDA)** sobre temperatura base configurable
+
+**Gráficos interactivos (Plotly)**
+- Barras de precipitación + ETo + temperatura mensual
+- Balance hídrico mensual (verde/rojo según superávit o déficit)
+- Acumulados diarios del mes en curso (lluvia, ETo, balance, GDA)
+- Humedad relativa y velocidad de viento mensual
+
+**Gestión de lotes**
+Dibujá un polígono en el mapa o cargá un archivo `.shp` (en `.zip`) o `.geojson`. Muestra el área en hectáreas y centraliza el mapa automáticamente.
+
+**Descarga de datos**
+Exportá la serie diaria completa en formato `.csv` con un solo clic.
 
 ---
 
-## 🗄️ Fuente de datos
+## 🛠️ Tecnologías
 
-| Fuente | Descripción |
-|--------|-------------|
-| [ERA5-Land (ECMWF)](https://www.ecmwf.int/en/era5-land) | Reanálisis climático diario · ~9 km resolución |
-| Google Earth Engine | Acceso y procesamiento de la colección ERA5-Land |
+| Tecnología | Rol |
+| :--- | :--- |
+| **Streamlit** | Interfaz de usuario y despliegue web |
+| **Google Earth Engine** | Acceso a ERA5-Land y cómputo espacial en la nube |
+| **ERA5-Land (ECMWF)** | Reanálisis climático global a ~11 km de resolución |
+| **Folium / Streamlit-Folium** | Mapa interactivo para definir el lote |
+| **Plotly** | Gráficos dinámicos de series temporales |
+| **GeoPandas / Shapely** | Procesamiento de geometrías vectoriales |
+| **google-auth** | Autenticación OAuth2 con Google Earth Engine |
 
-Los datos se extraen como media espacial sobre el área completa del lote (no sobre un centroide puntual).
+---
+
+## 📦 Variables y métricas
+
+| Variable / Métrica | Fuente | Unidad |
+| :--- | :--- | :--- |
+| Precipitación | ERA5-Land | mm/día |
+| T. máxima / mínima / media | ERA5-Land | °C |
+| Humedad Relativa | Calculada (punto de rocío) | % |
+| Radiación solar descendente | ERA5-Land | MJ/m²/día |
+| Velocidad de viento | ERA5-Land (u, v a 10 m) | m/s |
+| Evapotranspiración real | ERA5-Land | mm/día |
+| **ETo Penman-Monteith** | FAO-56 calculada | mm/día |
+| **Balance hídrico** | Lluvia − ETo acum. | mm |
+| **Grados Día Acumulados** | (T_med − T_base) · días | °C·día |
+
+---
+
+## 💻 Instalación local
+
+```bash
+# 1. Clonar el repositorio
+git clone https://github.com/tu-usuario/climate-analyzer.git
+cd climate-analyzer
+
+# 2. Crear entorno virtual e instalar dependencias
+python -m venv .venv
+source .venv/bin/activate        # Windows: .venv\Scripts\activate
+pip install -r requirements.txt
+
+# 3. Configurar credenciales GEE
+mkdir -p .streamlit
+cp secrets.toml .streamlit/secrets.toml
+# → Editá .streamlit/secrets.toml con tus credenciales reales
+
+# 4. Ejecutar
+streamlit run app.py
+```
+
+---
+
+## 🔑 Configuración de credenciales GEE
+
+Creá el archivo `.streamlit/secrets.toml` con la siguiente estructura:
+
+```toml
+EARTHENGINE_PROJECT = "tu-proyecto-gee-123456"
+
+[google_auth]
+refresh_token = "tu-refresh-token"
+client_id     = "tu-client-id.apps.googleusercontent.com"
+client_secret = "tu-client-secret"
+```
+
+> ⚠️ **Nunca subas este archivo a GitHub.** Incluí `.streamlit/secrets.toml` en tu `.gitignore`.
+
+Para obtener estas credenciales seguí la [guía oficial de autenticación de Earth Engine](https://developers.google.com/earth-engine/guides/auth).
+
+---
+
+## ☁️ Despliegue en Streamlit Cloud
+
+1. Subí el código a un repositorio de GitHub (sin el archivo de secrets).
+2. En [share.streamlit.io](https://share.streamlit.io) conectá tu repo.
+3. En **Advanced Settings → Secrets** pegá el contenido de tu `secrets.toml`.
+4. Desplegá — la conexión con GEE se establece automáticamente.
 
 ---
 
 ## 📁 Estructura del proyecto
 
 ```
-Climate/
-├── Climate_td_v2.ipynb   # Notebook principal
-├── config.py             # Parámetros: colección ERA5, T_BASE, etc.
-├── gee_utils.py          # Funciones GEE: fechas, periodos, descarga de serie
-├── agro_metrics.py       # Cálculo de ETo PM, HR, agregación mensual/diaria
-├── plots.py              # Generación de gráficos interactivos (Plotly)
-└── README.md             # Este archivo
+climate-analyzer/
+│
+├── app.py                  # Aplicación principal
+├── requirements.txt        # Dependencias Python
+├── secrets.toml            # Plantilla de credenciales (NO subir con datos reales)
+├── .gitignore
+│
+└── .streamlit/
+    └── secrets.toml        # Credenciales reales (ignorado por git)
 ```
 
 ---
 
-## 🛠️ Requisitos
+## 🗺️ Cómo usar la app
 
-```bash
-pip install earthengine-api geemap geopandas shapely
-pip install pandas plotly ipywidgets
-```
-
-O con conda:
-
-```bash
-conda install -c conda-forge earthengine-api geemap geopandas
-```
-
-### Requisitos adicionales
-
-- **Cuenta de Google Earth Engine** con un proyecto activo ([registrarse aquí](https://earthengine.google.com/))
-- Python >= 3.8
-- Jupyter Notebook o JupyterLab
-
----
-
-## 🚀 Uso
-
-1. Clonar el repositorio:
-
-```bash
-git clone https://github.com/Amaciasagro/GIT-RemoteSensing.git
-cd GIT-RemoteSensing/Climate
-```
-
-2. Abrir el notebook:
-
-```bash
-jupyter notebook Climate_td_v2.ipynb
-```
-
-3. En la **Celda 0**, configurar el proyecto GEE y las coordenadas iniciales:
-
-```python
-GEE_PROJECT  = 'tu-proyecto-gee'   # Project ID de Google Earth Engine
-CENTRO_LAT   = 33.584              # Latitud del centro del mapa
-CENTRO_LON   = -101.845            # Longitud del centro del mapa
-ZOOM_INICIAL = 14
-```
-
-4. Revisar `config.py` para ajustar la **temperatura base** (T_BASE) usada en el cálculo de grados día.
-
-5. Ejecutar las celdas en orden.
-
----
-
-## 🗺️ Definición del lote — dos opciones
-
-**Opción A — Dibujar en el mapa**
-Usar la herramienta de polígono del panel izquierdo del mapa interactivo y presionar *"✅ Confirmar polígono dibujado"*. El lote se exporta automáticamente como `lote_exportado.geojson`.
-
-**Opción B — Subir un Shapefile**
-Subir un archivo `.shp` (en `.zip` con todos los componentes: `.shp`, `.dbf`, `.shx`, `.prj`) mediante el widget de carga. El archivo se reproyecta automáticamente a EPSG:4326.
-
----
-
-## 📊 Outputs generados
-
-- **Resumen en consola** del último mes disponible: lluvia, ETo, balance hídrico, temperatura media, HR
-- **Gráficos interactivos** (Plotly) con series mensuales y detalle diario del mes actual:
-  - Precipitación y ETo mensual
-  - Balance hídrico acumulado
-  - Temperatura máx/mín/media
-  - Humedad relativa
-  - Grados día acumulados (GDA)
-- **Archivo `lote_exportado.geojson`** con el polígono del lote
-
----
-
-## 🔗 Recursos relacionados
-
-- [ERA5-Land en Google Earth Engine](https://developers.google.com/earth-engine/datasets/catalog/ECMWF_ERA5_LAND_DAILY_AGGR)
-- [FAO-56 Penman-Monteith](https://www.fao.org/3/x0490e/x0490e00.htm)
-- [geemap documentation](https://geemap.org/)
-- [Google Earth Engine](https://earthengine.google.com/)
+1. **Definir el lote** — dibujá un polígono en el mapa o cargá un `.shp`/`.geojson`.
+2. **Configurar parámetros** — ajustá el período de análisis y la temperatura base para GDA.
+3. **Analizar** — presioná *Analizar clima del lote*. ERA5 se descarga vía GEE (1–2 min la primera vez).
+4. **Explorar** — revisá los gráficos mensuales y el detalle diario del mes en curso.
+5. **Exportar** — descargá la serie diaria completa en `.csv`.
 
 ---
 
 ## 📄 Licencia
 
-Repositorio de uso personal. Datos climáticos provistos por ECMWF (ERA5-Land) bajo licencia Copernicus.
+Este proyecto se distribuye bajo la licencia **MIT**.
+
+---
+
+**Autor:** Ariel Macías | Ingeniero Agrónomo · GIS & Remote Sensing · © 2026
