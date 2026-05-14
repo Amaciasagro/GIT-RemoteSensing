@@ -283,15 +283,21 @@ def build_folium_map(center, zoom, aoi_geojson=None,
 # ════════════════════════════════════════════════════════════
 # MAPA DUAL (ESPEJO) PARA COMPARAR
 # ════════════════════════════════════════════════════════════
-def build_dual_folium_map(center, zoom, aoi_geojson, url1, url2, name1, name2) -> folium.plugins.DualMap:
+def build_dual_folium_map(center, zoom, aoi_geojson, url1, url2, name1, name2, url_rgb1=None, url_rgb2=None) -> folium.plugins.DualMap:
     m = DualMap(location=center, zoom_start=zoom, tiles=None)
 
-    # Base satelital para ambos mapas
+    # Base satelital estática para ambos mapas
     base_url = "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
-    folium.TileLayer(tiles=base_url, attr="Esri", name="Satélite").add_to(m.m1)
-    folium.TileLayer(tiles=base_url, attr="Esri", name="Satélite").add_to(m.m2)
+    folium.TileLayer(tiles=base_url, attr="Esri", name="Satélite estático").add_to(m.m1)
+    folium.TileLayer(tiles=base_url, attr="Esri", name="Satélite estático").add_to(m.m2)
 
-    # Capas de GEE (Izquierda y Derecha)
+    # Satélite dinámico RGB (Oculto por defecto, se activa desde el control de capas)
+    if url_rgb1:
+        folium.TileLayer(tiles=url_rgb1, attr="Sentinel-2", name="Satélite dinámico Izq", overlay=True, show=False).add_to(m.m1)
+    if url_rgb2:
+        folium.TileLayer(tiles=url_rgb2, attr="Sentinel-2", name="Satélite dinámico Der", overlay=True, show=False).add_to(m.m2)
+
+    # Capas de GEE (Índices)
     folium.TileLayer(tiles=url1, attr="Google Earth Engine", name=name1, overlay=True, opacity=0.75).add_to(m.m1)
     folium.TileLayer(tiles=url2, attr="Google Earth Engine", name=name2, overlay=True, opacity=0.75).add_to(m.m2)
 
@@ -374,11 +380,8 @@ def render_sidebar():
 
         # ── Configuración GEE ──
         st.markdown("### ⚙️ Configuración")
-        gee_project = st.text_input(
-            "Proyecto GEE",
-            value=st.session_state.get("gee_project", ""),
-            placeholder="my-project-123456",
-        )
+        gee_project = st.secrets.get("EARTHENGINE_PROJECT")
+        
         col1, col2 = st.columns(2)
         with col1:
             anios = st.number_input("Años atrás", 1, 5, 3)
@@ -436,7 +439,6 @@ def render_sidebar():
                 st.success("✅ Lote definido")
 
         st.divider()
-
         # ── Botón analizar ──
         run_btn = st.button(
             "🛰️ Analizar lote",
@@ -466,8 +468,9 @@ def main():
     gee_project, anios, max_nubes, k_ext, savi_l, run_btn = render_sidebar()
 
     # ── GEE Init ──
-    if gee_project and gee_project != st.session_state.get("gee_project"):
-        st.session_state["gee_project"] = gee_project
+    # if gee_project and gee_project != st.session_state.get("gee_project"):
+    #     st.session_state["gee_project"] = gee_project
+    if not st.session_state.get("gee_ok", False):
         with st.spinner("Conectando con Earth Engine..."):
             ok, err = init_gee(gee_project)
             st.session_state["gee_ok"] = ok
@@ -614,14 +617,18 @@ def main():
                     aoi_json, month_start, month_end, "TrueColor",
                     params["max_clouds"], params["k"], params["L"]
                 )
+                
+                # ¡FALTABA ESTO! Crear el mapa antes de mandarlo a st_folium
                 m = build_folium_map(
-                    center, zoom,
+                    center=center, 
+                    zoom=zoom, 
                     aoi_geojson=st.session_state["aoi"],
-                    tile_url=url1,
+                    tile_url=url1, 
                     layer_name=LAYER_LABELS[layer1],
                     rgb_url=url_rgb,
-                    rgb_label=f"Sentinel-2 RGB ({new_sel})",
+                    rgb_label=f"Satélite dinámico ({month_start[:7]})"
                 )
+                
                 st_folium(m, height=480, use_container_width=True,
                           returned_objects=["center", "zoom"], 
                           key=f"map_single_{sel_idx}_{layer1}")
@@ -630,19 +637,28 @@ def main():
                 
     # ── COMPARAR ──
     else:
+        st.markdown("#### ⚙️ Configurar Mapas Independientes")
         col_izq, col_der = st.columns(2)
+        
         with col_izq:
+            st.markdown("##### ⬅️ Mapa Izquierdo")
+            # Selector de fecha independiente (arranca en el mes seleccionado globalmente)
+            fecha_izq = st.selectbox("Mes/Año Izq.", month_labels, index=sel_idx, key="fecha_izq")
             layer1 = st.selectbox(
-                "Capa izquierda",
+                "Capa Izquierda",
                 list(LAYER_LABELS.keys()),
                 format_func=lambda k: LAYER_LABELS[k],
                 index=list(LAYER_LABELS.keys()).index(st.session_state["layer1"]),
                 key="sel_layer1",
             )
             st.session_state["layer1"] = layer1
+            
         with col_der:
+            st.markdown("##### ➡️ Mapa Derecho")
+            # Selector de fecha independiente
+            fecha_der = st.selectbox("Mes/Año Der.", month_labels, index=sel_idx, key="fecha_der")
             layer2 = st.selectbox(
-                "Capa derecha",
+                "Capa Derecha",
                 list(LAYER_LABELS.keys()),
                 format_func=lambda k: LAYER_LABELS[k],
                 index=list(LAYER_LABELS.keys()).index(st.session_state["layer2"]),
@@ -652,30 +668,41 @@ def main():
 
         with st.spinner("Cargando capas sincronizadas..."):
             try:
-                url1 = get_tile_url(
-                    aoi_json, month_start, month_end, layer1,
-                    params["max_clouds"], params["k"], params["L"]
-                )
-                url2 = get_tile_url(
-                    aoi_json, month_start, month_end, layer2,
-                    params["max_clouds"], params["k"], params["L"]
-                )
+                # Calcular inicio y fin exacto para el mapa izquierdo
+                fecha_izq_dt = pd.to_datetime(fecha_izq)
+                month_start_izq = fecha_izq_dt.strftime("%Y-%m-01")
+                month_end_izq = (fecha_izq_dt + pd.offsets.MonthEnd(1)).strftime("%Y-%m-%d")
+
+                # Calcular inicio y fin exacto para el mapa derecho
+                fecha_der_dt = pd.to_datetime(fecha_der)
+                month_start_der = fecha_der_dt.strftime("%Y-%m-01")
+                month_end_der = (fecha_der_dt + pd.offsets.MonthEnd(1)).strftime("%Y-%m-%d")
+
+                # Pedir tiles de los índices
+                url1 = get_tile_url(aoi_json, month_start_izq, month_end_izq, layer1, params["max_clouds"], params["k"], params["L"])
+                url2 = get_tile_url(aoi_json, month_start_der, month_end_der, layer2, params["max_clouds"], params["k"], params["L"])
+
+                # Pedir tiles RGB (Satélite) para cada lado
+                url_rgb_izq = get_tile_url(aoi_json, month_start_izq, month_end_izq, "TrueColor", params["max_clouds"], params["k"], params["L"])
+                url_rgb_der = get_tile_url(aoi_json, month_start_der, month_end_der, "TrueColor", params["max_clouds"], params["k"], params["L"])
                 
-                # Título descriptivo encima del mapa doble
-                st.caption(f"Comparando **{LAYER_LABELS[layer1]}** (izq) vs **{LAYER_LABELS[layer2]}** (der) · {new_sel}")
+                st.caption(f"Comparando **{LAYER_LABELS[layer1]} ({fecha_izq})** vs **{LAYER_LABELS[layer2]} ({fecha_der})**")
                 
-                # Creamos el DualMap
+                # Creamos el DualMap pasándole las 4 URLs (2 índices y 2 satélites)
                 m_dual = build_dual_folium_map(
                     center, zoom, st.session_state["aoi"], 
-                    url1, url2, LAYER_LABELS[layer1], LAYER_LABELS[layer2]
+                    url1, url2, 
+                    f"{LAYER_LABELS[layer1]} ({fecha_izq})", 
+                    f"{LAYER_LABELS[layer2]} ({fecha_der})",
+                    url_rgb_izq, url_rgb_der
                 )
                 
-                # Lo mostramos a pantalla completa (al pasarle una key con sel_idx se actualiza con la curva)
+                # Renderizamos el mapa (la key única fuerza la actualización al cambiar fechas)
                 r_dual = st_folium(m_dual, height=480, use_container_width=True, 
-                                   key=f"map_dual_{sel_idx}_{layer1}_{layer2}", 
+                                   key=f"map_dual_{fecha_izq}_{layer1}_{fecha_der}_{layer2}", 
                                    returned_objects=["center", "zoom"])
                 
-                # Guardamos el centro y el zoom para que no salte al cambiar de fecha
+                # Guardamos el centro y el zoom
                 if r_dual and r_dual.get("center"):
                     st.session_state["map_center"] = [r_dual["center"]["lat"], r_dual["center"]["lng"]]
                     st.session_state["map_zoom"] = r_dual.get("zoom", zoom)
