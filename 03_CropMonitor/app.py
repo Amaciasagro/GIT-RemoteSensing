@@ -373,12 +373,12 @@ def render_sidebar():
         st.divider()
 
         # ── Configuración GEE ──
-        st.markdown("### ⚙️ Configuración")
-        gee_project = st.text_input(
-            "Proyecto GEE",
-            value=st.session_state.get("gee_project", ""),
-            placeholder="my-project-123456",
-        )
+        # st.markdown("### ⚙️ Configuración")
+        gee_project = st.secrets.get("EARTHENGINE_PROJECT")
+        # gee_project = st.text_input(
+        #     "Proyecto GEE",
+        #     value=st.session_state.get("gee_project", ""),
+        #     placeholder="my-project-123456",
         col1, col2 = st.columns(2)
         with col1:
             anios = st.number_input("Años atrás", 1, 5, 3)
@@ -436,7 +436,6 @@ def render_sidebar():
                 st.success("✅ Lote definido")
 
         st.divider()
-
         # ── Botón analizar ──
         run_btn = st.button(
             "🛰️ Analizar lote",
@@ -466,8 +465,9 @@ def main():
     gee_project, anios, max_nubes, k_ext, savi_l, run_btn = render_sidebar()
 
     # ── GEE Init ──
-    if gee_project and gee_project != st.session_state.get("gee_project"):
-        st.session_state["gee_project"] = gee_project
+    # if gee_project and gee_project != st.session_state.get("gee_project"):
+    #     st.session_state["gee_project"] = gee_project
+    if not st.session_state.get("gee_ok", False):
         with st.spinner("Conectando con Earth Engine..."):
             ok, err = init_gee(gee_project)
             st.session_state["gee_ok"] = ok
