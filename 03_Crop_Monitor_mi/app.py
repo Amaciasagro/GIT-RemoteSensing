@@ -374,10 +374,27 @@ def load_aoi_from_file(uploaded_files) -> dict | None:
 # ════════════════════════════════════════════════════════════
 def render_sidebar():
     with st.sidebar:
-        st.markdown("## 🌿 Crop Monitor")
-        st.caption("LAI & NDVI · Sentinel-2 SR · GEE")
+        st.markdown("# 🌿 Crop Monitor")
+        st.caption("IAF & NDVI · Sentinel-2 · GEE")
         st.divider()
+        
+        with st.expander("🛠️ Parámetros Agronómicos Avanzados"):
+            savi_l = st.slider(
+                "Coeficiente Suelo (SAVI L)", 
+                min_value=0.0, max_value=1.0, value=0.5, step=0.1,
+                help="Diseñado para mitigar el efecto del suelo desnudo (ej: Baja cobertura 0.8; Alta cobertura 0.2. Por defecto 0.5)"
+            )
+            
+            k_ext = st.slider(
+                "Coeficiente Extinción (Beer-Lambert k)", 
+                min_value=0.1, max_value=1.0, value=0.5, step=0.05,
+                help="Cuantifica como la radiación PAR disminuye con la arquitectura de la planta (ej: Maíz 0.4; Soja 0.7)"
+            )
 
+            # Acá guardamos los valores para que el resto del programa los use
+            st.session_state["savi_l"] = savi_l
+            st.session_state["k_ext"] = k_ext
+            
         # ── Configuración GEE ──
         st.markdown("### ⚙️ Configuración")
         gee_project = st.secrets.get("EARTHENGINE_PROJECT")
@@ -385,13 +402,10 @@ def render_sidebar():
         col1, col2 = st.columns(2)
         with col1:
             anios = st.number_input("Años atrás", 1, 5, 3)
-            k_ext = st.number_input("K extinción", 0.3, 0.7, 0.5, 0.05,
-                                    help="Coef. Beer-Lambert (0.4–0.6 para cultivos)")
+            
         with col2:
             max_nubes = st.number_input("Nubes máx (%)", 5, 80, 30, 5)
-            savi_l    = st.number_input("SAVI L", 0.0, 1.0, 0.5, 0.1,
-                                        help="0=suelo desnudo · 1=canopeo cerrado")
-
+            
         st.divider()
 
         # ── AOI ──
