@@ -1,143 +1,66 @@
-# 🌱 Soil Analyzer — USA Soils Analysis
+# 🌱 Soil Analyzer: Advanced USA Soil & Topographic Mapping
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)((https://colab.research.google.com/github/Amaciasagro/GIT-RemoteSensing/blob/master/01_USA_Soils_analysis/01_USA_Soils_analysis.ipynb))]
-[![Streamlit](https://img.shields.io/badge/-Streamlit-FF4B4B?style=flat&logo=streamlit&logoColor=white)(https://git-remotesensing-abuk6upwubrppkqjc7gwmf.streamlit.app)]
+**Autor:** Ariel Macías | Ingeniero Agrónomo · GIS & Remote Sensing Data Scientist
 
-**Autor:** Ariel Macías | Agronomist · GIS & Remote Sensing
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Amaciasagro/GIT-RemoteSensing/blob/master/01_USA_Soils_analysis/01_USA_Soils_analysis.ipynb)
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://git-remotesensing-abuk6upwubrppkqjc7gwmf.streamlit.app)
 
-Herramienta interactiva para analizar suelos de un lote agrícola en **Estados Unidos**, integrando datos oficiales de la **USDA-NRCS (Soil Data Mart)** con **Google Earth Engine**. Permite delimitar un lote, descargar unidades cartográficas de suelo y generar un reporte agronómico completo con visualizaciones.
-
-> ⚠️ Los datos USDA-NRCS tienen cobertura exclusiva en **Estados Unidos**. Para lotes en Argentina u otros países, los servicios no devuelven datos.
+Esta aplicación es una herramienta profesional de **Agricultura de Precisión** diseñada para diagnosticar lotes agrícolas en Estados Unidos. Integra datos oficiales de la **USDA-NRCS (Soil Data Mart)** con modelos de elevación global para generar reportes agronómicos y visualizaciones 3D fotorrealistas.
 
 ---
 
-## 🔄 Flujo de trabajo
+## 📺 Demostración en Vivo
+> **TIP PARA EL PORTFOLIO:** Inserta aquí un GIF o un link a un video de YouTube mostrando cómo navegas por las pestañas.
 
-| Paso | Celda | Descripción |
-|------|-------|-------------|
-| 0 | Configuración | Parámetros de proyecto GEE y coordenadas del mapa inicial |
-| 1 | Inicialización | Autenticación GEE · Dibujo del lote o carga de Shapefile/GeoJSON |
-| 2 | Descarga WFS | Consulta espacial a USDA Soil Data Mart · Mapa coloreado por clase textural |
-| 3 | Reporte agronómico | Tablas detalladas con textura, MO, pH, CEC, AWC por serie de suelo |
-| 4 | Gráficos | Barras apiladas de composición granulométrica por unidad cartográfica |
+![Captura de Pantalla Principal](https://via.placeholder.com/800x400?text=Captura+de+la+App+Funcionando)
 
 ---
 
-## 📋 Propiedades de suelo consultadas
+## 🚀 Guía Didáctica de Uso
 
-| Propiedad | Descripción |
-|-----------|-------------|
-| Arena / Limo / Arcilla | Granulometría del horizonte superficial (0–20 cm) |
-| Clase textural | Clasificada automáticamente desde granulometría (12 clases USDA) |
-| Materia Orgánica (%) | Contenido de MO superficial |
-| pH | Reacción del suelo (con código de color por rango) |
-| CEC | Capacidad de intercambio catiónico (cmol/kg) |
-| AWC | Agua disponible (cm/cm) |
+La app está dividida en 4 módulos lógicos que siguen el flujo de trabajo de un consultor agronómico:
 
----
+### 1. 📍 Definición del Lote (AOI)
+El primer paso es delimitar el área de estudio. 
+- **Cómo usarlo:** Puedes subir un archivo `.zip` (Shapefile) o `.geojson`. También permite pegar directamente las coordenadas en formato GeoJSON.
+- **Visualización:** Verás el contorno sobre una capa de satélite para verificar que la ubicación sea correcta.
 
-## 🗄️ Fuentes de datos
+### 2. 🌱 Información de Suelos
+Aquí ocurre la "magia" de la integración con la USDA.
+- **Mapas:** Genera mapas automáticos de **Clase Textural** y **MUKey** (Unidades Cartográficas).
+- **Reporte:** Al hacer clic, obtendrás una tabla detallada con pH, Materia Orgánica, CEC y más.
+- **Gráficos de Perfil:** Visualiza cómo cambian las propiedades del suelo (arena, limo, arcilla) a medida que profundizas en el perfil (0-200 cm).
 
-| Fuente | Descripción |
-|--------|-------------|
-| [USDA-NRCS Soil Data Mart (WFS)](https://sdmdataaccess.nrcs.usda.gov/) | Polígonos de unidades cartográficas de suelo |
-| [USDA SDA Tabular API](https://sdmdataaccess.nrcs.usda.gov/tabular/post.rest) | Propiedades físico-químicas por componente y horizonte |
-| [UC Davis SoilWeb](https://casoilresource.lawr.ucdavis.edu/soilweb-apps/) | Fichas de series de suelo (enlaces en el reporte) |
-| Google Earth Engine | Mapa base satelital e inicialización del entorno geoespacial |
+> 💡 **Espacio para Captura:** *Inserta aquí una imagen del mapa de texturas y el gráfico de barras apiladas.*
 
----
+### 3. 🏔️ Modelos Topográficos
+Análisis del relieve para entender el movimiento del agua y la erosión.
+- **Curvas de Nivel:** Un mapa interactivo (Leaflet) donde puedes ver la elevación exacta pasando el mouse.
+- **Hillshade:** Un mapa de sombras que resalta las micro-pendientes del terreno.
 
-## 🛠️ Requisitos
-
-```bash
-pip install earthengine-api geemap geopandas requests shapely
-pip install pandas plotly ipywidgets
-```
-
-O con conda:
-
-```bash
-conda install -c conda-forge earthengine-api geemap geopandas
-```
-
-### Requisitos adicionales
-
-- **Cuenta de Google Earth Engine** con un proyecto activo ([registrarse aquí](https://earthengine.google.com/))
-- Python >= 3.8
-- Jupyter Notebook o JupyterLab
+### 4. 🌐 Proyección 3D fotorrealista
+La joya de la corona para presentaciones con clientes.
+- **Superficie 3D:** Una maqueta rápida para ver la volumetría del campo.
+- **Malla Satelital:** Proyecta imágenes de **Esri World Imagery** sobre el relieve.
+- **Novedad:** El límite de tu lote se dibuja automáticamente sobre la montaña para no perder la referencia espacial.
 
 ---
 
-## 🚀 Uso
+## 📂 Estructura del Proyecto
+El código está organizado de forma modular para facilitar su mantenimiento:
 
-1. Clonar el repositorio:
-
-```bash
-git clone https://github.com/Amaciasagro/GIT-RemoteSensing.git
-cd GIT-RemoteSensing/01_USA_Soils_analysis
-```
-
-2. Abrir el notebook:
-
-```bash
-jupyter notebook 01_USA_Soils_analysis.ipynb
-```
-
-3. En la **Celda 0**, configurar el proyecto GEE y las coordenadas del mapa inicial:
-
-```python
-GEE_PROJECT  = 'tu-proyecto-gee'   # Project ID de Google Earth Engine
-CENTRO_LAT   = 33.584              # Latitud del centro del mapa
-CENTRO_LON   = -101.845            # Longitud del centro del mapa
-ZOOM_INICIAL = 14
-```
-
-4. Ejecutar las celdas en orden.
+* `app.py`: El punto de entrada principal.
+* `tabs/`: Contiene la lógica de interfaz de cada sección (AOI, Suelos, Topo, 3D).
+* `utils/`: Motores de cálculo (Descarga de DEM, API de USDA, Exportación de archivos).
+* `assets/`: Archivos estáticos, logos y mapas HTML base.
+* `notebooks/`: Mi laboratorio de pruebas en Jupyter.
 
 ---
 
-## 🗺️ Definición del lote — dos opciones
+## 🛠️ Instalación y Configuración Local
 
-**Opción A — Dibujar en el mapa**
-Usar la herramienta de polígono del panel izquierdo del mapa interactivo y luego presionar el botón *"✅ Confirmar polígono dibujado"*. El lote se exporta automáticamente como GeoJSON descargable.
+Si eres desarrollador y quieres replicar este entorno:
 
-**Opción B — Subir un archivo vectorial**
-Subir un archivo `.shp` (en `.zip` con todos los componentes) o `.geojson` mediante el widget de carga. El archivo se reproyecta automáticamente a EPSG:4326.
-
----
-
-## 📊 Outputs generados
-
-- **Mapa interactivo** con unidades de suelo coloreadas por clase textural (paleta de 12 clases USDA)
-- **Tabla resumen** de superficies por unidad cartográfica (hectáreas y % del lote)
-- **Reporte HTML expandible** con propiedades detalladas por serie de suelo, incluyendo:
-  - Links directos a la ficha de cada serie en UC Davis SoilWeb
-  - Color de pH según rango agronómico (muy ácido → neutro → alcalino)
-  - Clase textural clasificada automáticamente
-- **Gráficos de composición granulométrica** (barras apiladas arena/limo/arcilla)
-- **Archivo `lote_exportado.geojson`** con el polígono del lote
-
----
-
-## 📁 Estructura del directorio
-
-```
-01_USA_Soils_analysis/
-├── 01_USA_Soils_analysis.ipynb   # Notebook principal
-└── README.md                     # Este archivo
-```
-
----
-
-## 🔗 Recursos relacionados
-
-- [USDA-NRCS Soil Data Access](https://sdmdataaccess.nrcs.usda.gov/)
-- [UC Davis SoilWeb](https://casoilresource.lawr.ucdavis.edu/soilweb-apps/)
-- [Google Earth Engine](https://earthengine.google.com/)
-- [geemap documentation](https://geemap.org/)
-
----
-
-## 📄 Licencia
-
-Repositorio de uso personal. Datos de suelo provistos por USDA-NRCS bajo dominio público.
+1. **Clonar el repositorio:**
+   ```bash
+   git clone [https://github.com/tu-usuario/tu-repo.git](https://github.com/tu-usuario/tu-repo.git)
