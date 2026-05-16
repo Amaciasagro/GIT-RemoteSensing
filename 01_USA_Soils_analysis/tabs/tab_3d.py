@@ -23,22 +23,28 @@ warnings.filterwarnings("ignore")
 
 def _perimeter_trace(geom_shp, elevation, x_coords, y_coords, exag, label="Field boundary"):
     """
-    Returns a Plotly Scatter3d trace that draws the field boundary
-    draped on the DEM surface at the correct elevation.
+    Scatter3d trace that draws the field boundary draped on the DEM surface.
+    
+    Key fix: elevation array has row-0 = lat_max (north), but y_coords runs
+    south→north (y_coords[0] = lat_min). We must invert the row index lookup
+    so that higher latitudes map to lower row indices.
     """
     from shapely.geometry import mapping
-    import json
+
+    H, W = elevation.shape
 
     def _interp_elev(lon, lat):
-        """Bilinear elevation lookup for a (lon, lat) point."""
-        H, W = elevation.shape
+        # Column index: straightforward west→east
         xi = np.interp(lon, x_coords, np.arange(W))
-        yi = np.interp(lat, y_coords[::-1], np.arange(H))
-        xi_c, yi_c = int(np.clip(xi, 0, W - 1)), int(np.clip(yi, 0, H - 1))
-        return float(elevation[yi_c, xi_c]) * exag
+        # Row index: y_coords is south→north but array is north→south,
+        # so we flip: row 0 = lat_max, row H-1 = lat_min
+        lat_min, lat_max = y_coords[0], y_coords[-1]
+        yi = (1.0 - (lat - lat_min) / (lat_max - lat_min + 1e-9)) * (H - 1)
+        xi_c = int(np.clip(xi, 0, W - 1))
+        yi_c = int(np.clip(yi, 0, H - 1))
+        return float(elevation[yi_c, xi_c]) * exag + exag * 0.5  # small visual offset
 
     geojson = mapping(geom_shp)
-    coords_list = []
     if geojson["type"] == "Polygon":
         rings = [geojson["coordinates"][0]]
     elif geojson["type"] == "MultiPolygon":
@@ -51,7 +57,7 @@ def _perimeter_trace(geom_shp, elevation, x_coords, y_coords, exag, label="Field
         for lon, lat in ring:
             xs.append(lon)
             ys.append(lat)
-            zs.append(_interp_elev(lon, lat) + 2)  # small offset so it's visible
+            zs.append(_interp_elev(lon, lat))
         xs.append(None); ys.append(None); zs.append(None)
 
     return go.Scatter3d(
