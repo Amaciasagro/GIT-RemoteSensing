@@ -2,8 +2,8 @@
 
 **Autor:** Ariel Macías | Ingeniero Agrónomo · GIS & Remote Sensing Data Scientist
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)('https://colab.research.google.com/github/Amaciasagro/GIT-RemoteSensing/blob/master/01_USA_Soils_analysis/01_USA_Soils_analysis.ipynb')]
-[![Streamlit](https://img.shields.io/badge/-Streamlit-FF4B4B?style=flat&logo=streamlit&logoColor=white)('https://git-remotesensing-abuk6upwubrppkqjc7gwmf.streamlit.app')]
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Amaciasagro/GIT-RemoteSensing/blob/master/01_USA_Soils_analysis/01_USA_Soils_analysis.ipynb)
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://git-remotesensing-abuk6upwubrppkqjc7gwmf.streamlit.app)
 
 Esta aplicación es una herramienta profesional de **Agricultura de Precisión** diseñada para diagnosticar lotes agrícolas en Estados Unidos. Integra datos oficiales de la **USDA-NRCS (Soil Data Mart)** con modelos de elevación global para generar reportes agronómicos y visualizaciones 3D fotorrealistas.
 
