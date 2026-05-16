@@ -23,27 +23,45 @@ warnings.filterwarnings("ignore")
 
 def _perimeter_trace(geom_shp, elevation, x_coords, y_coords, exag, label="Field boundary"):
     """
-    Returns a Plotly Scatter3d trace that draws the field boundary
-    draped on the DEM surface at the correct elevation.
+    Scatter3d trace draped on the DEM surface, guaranteed to sit visually
+    ABOVE the surface at all points.
+
+    Strategy: for each vertex, sample elevation in a small neighbourhood
+    (3×3 px window) and take the MAX, then add an offset scaled by exag.
+    This ensures the line is never buried under the mesh regardless of
+    interpolation differences between Plotly's mesh and our lookup.
     """
     from shapely.geometry import mapping
-    import json
 
-    def _interp_elev(lon, lat):
-        """Bilinear elevation lookup for a (lon, lat) point."""
-        H, W = elevation.shape
-        xi = np.interp(lon, x_coords, np.arange(W))
-        yi = np.interp(lat, y_coords[::-1], np.arange(H))
-        xi_c, yi_c = int(np.clip(xi, 0, W - 1)), int(np.clip(yi, 0, H - 1))
-        return float(elevation[yi_c, xi_c]) * exag
+    H, W = elevation.shape
+    lat_min, lat_max = y_coords[0], y_coords[-1]
+
+    def _col(lon):
+        return np.interp(lon, x_coords, np.arange(W))
+
+    def _row(lat):
+        # array row-0 = lat_max (north), row H-1 = lat_min (south)
+        return (1.0 - (lat - lat_min) / (lat_max - lat_min + 1e-9)) * (H - 1)
+
+    def _elev_above(lon, lat):
+        xi = int(np.clip(_col(lon), 0, W - 1))
+        yi = int(np.clip(_row(lat), 0, H - 1))
+        # Sample 3×3 neighbourhood and take max to avoid sinking below mesh
+        r0, r1 = max(0, yi - 1), min(H, yi + 2)
+        c0, c1 = max(0, xi - 1), min(W, xi + 2)
+        local_max = elevation[r0:r1, c0:c1].max()
+        # Offset: half a metre in real scale, amplified by exag so always visible
+        return float(local_max) * exag + max(0.5 * exag, 1.0)
 
     geojson = mapping(geom_shp)
-    coords_list = []
-    if geojson["type"] == "Polygon":
-        rings = [geojson["coordinates"][0]]
-    elif geojson["type"] == "MultiPolygon":
-        rings = [poly[0] for poly in geojson["coordinates"]]
-    else:
+    rings = (
+        [geojson["coordinates"][0]]
+        if geojson["type"] == "Polygon"
+        else [poly[0] for poly in geojson["coordinates"]]
+        if geojson["type"] == "MultiPolygon"
+        else []
+    )
+    if not rings:
         return None
 
     xs, ys, zs = [], [], []
@@ -51,13 +69,13 @@ def _perimeter_trace(geom_shp, elevation, x_coords, y_coords, exag, label="Field
         for lon, lat in ring:
             xs.append(lon)
             ys.append(lat)
-            zs.append(_interp_elev(lon, lat) + 2)  # small offset so it's visible
+            zs.append(_elev_above(lon, lat))
         xs.append(None); ys.append(None); zs.append(None)
 
     return go.Scatter3d(
         x=xs, y=ys, z=zs,
         mode="lines",
-        line=dict(color="#00ff88", width=5),
+        line=dict(color="#00ff88", width=6),
         name=label,
         hoverinfo="skip",
     )

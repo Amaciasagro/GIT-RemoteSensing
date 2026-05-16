@@ -41,7 +41,7 @@ def _build_contour_html(contour_features, field_geojson_str, centroid_lat, centr
       - Live elevation readout (top bar updates on hover)
       - Gradient colour legend
     """
-    cmap   = plt.cm.get_cmap("RdYlGn")
+    cmap   = plt.cm.get_cmap("terrain")
     n_stop = 8
     stops, tick_html = [], ""
     for i in range(n_stop + 1):
@@ -125,7 +125,7 @@ def _build_contour_html(contour_features, field_geojson_str, centroid_lat, centr
   // Contour lines
   L.geoJSON(CONTOURS, {{
     style: function(feat) {{
-      return {{color: feat.properties.color, weight: 2.8, opacity: 0.75}};
+      return {{color: feat.properties.color, weight: 3, opacity: 0.9}};
     }},
     onEachFeature: function(feat, layer) {{
       var elev = feat.properties.elevation_m;
@@ -275,17 +275,26 @@ def render(state: dict):
     with st.spinner("Rendering hillshade…"):
         fig_hs, ax = plt.subplots(figsize=(10, 5), facecolor="#0f0f1e")
         ax.set_facecolor("#0f0f1e")
+
+        # The DEM array has row-0 = northernmost latitude (max lat).
+        # y_coords runs south→north (y_coords[0] = lat_min, y_coords[-1] = lat_max).
+        # We flip the elevation array vertically so that row-0 = south (lat_min),
+        # which matches the geographic extent passed to imshow/contour (origin="lower").
+        elev_geo  = np.flipud(elevation)   # row-0 now = southernmost = lat_min
+
         ls        = LightSource(azdeg=315, altdeg=35)
-        hillshade = ls.hillshade(elevation, vert_exag=3, dx=30, dy=30)
+        hillshade = ls.hillshade(elev_geo, vert_exag=3, dx=30, dy=30)
+
         ax.imshow(
-            hillshade, cmap="gray", origin="upper",
+            hillshade, cmap="gray", origin="lower",
             extent=[x_coords[0], x_coords[-1], y_coords[0], y_coords[-1]],
             aspect="auto",
         )
+        # contour also gets the geo-oriented (flipped) elevation + matching y coords
         cs = ax.contour(
-            np.linspace(x_coords[0], x_coords[-1], elevation.shape[1]),
-            np.linspace(y_coords[0], y_coords[-1], elevation.shape[0]),
-            elevation, levels=n_contours, cmap="RdYlGn", linewidths=0.8,
+            np.linspace(x_coords[0], x_coords[-1], elev_geo.shape[1]),
+            np.linspace(y_coords[0], y_coords[-1], elev_geo.shape[0]),
+            elev_geo, levels=n_contours, cmap="terrain", linewidths=0.7,
         )
         ax.clabel(cs, inline=True, fontsize=7, fmt="%.0f m", colors="white")
         ax.set_xlabel("Longitude", color="#aaa")
