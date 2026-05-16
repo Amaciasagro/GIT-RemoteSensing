@@ -289,45 +289,44 @@ def render(state: dict):
         else:
             st.subheader("🛰️ 3D Model — Satellite Imagery Texture")
 
+            # Auto-download texture if not cached or DEM changed
             if "texture_img" not in state or state.get("dem_key_3d") != dem_key:
-                if st.button("📥 Download Satellite Texture", key="btn_texture"):
-                    progress2 = st.progress(0, text="Downloading satellite tiles…")
+                with st.spinner("📥 Downloading satellite texture tiles…"):
                     try:
+                        progress_tex = st.progress(0, text="Satellite tiles: 0%")
                         texture_img = download_satellite_texture(
                             tile_info,
-                            progress_cb=lambda p: progress2.progress(
+                            progress_cb=lambda p: progress_tex.progress(
                                 p, text=f"Satellite tiles: {int(p*100)}%"
                             ),
                         )
                         state["texture_img"] = texture_img
-                        progress2.empty()
-                        st.success("✅ Satellite texture loaded!")
-                        st.rerun()
+                        progress_tex.empty()
                     except Exception as e:
-                        st.error(f"Texture download error: {e}")
+                        st.error(f"Satellite texture download error: {e}")
                         return
-                else:
-                    st.info("Click **Download Satellite Texture** to fetch Esri World Imagery tiles.")
-                    return
 
             texture_img = state["texture_img"]
             with st.spinner("Building 3D mesh with satellite texture…"):
                 el_h, el_w = elevation.shape
                 if el_h * el_w > 150_000:
-                    factor      = max(1, int(np.sqrt(el_h * el_w / 100_000)))
+                    factor       = max(1, int(np.sqrt(el_h * el_w / 100_000)))
                     elevation_ds = elevation[::factor, ::factor]
-                    x_ds        = x_coords[::factor]
-                    y_ds        = y_coords[::factor]
+                    x_ds         = x_coords[::factor]
+                    y_ds         = y_coords[::factor]
                     from PIL import Image as PILImage
-                    pil = PILImage.fromarray(texture_img)
-                    pil = pil.resize((elevation_ds.shape[1], elevation_ds.shape[0]), PILImage.LANCZOS)
+                    pil        = PILImage.fromarray(texture_img)
+                    pil        = pil.resize((elevation_ds.shape[1], elevation_ds.shape[0]), PILImage.LANCZOS)
                     texture_ds = np.array(pil)
                     st.caption(
                         f"ℹ️ Grid downsampled {factor}× for performance "
                         f"({elevation_ds.shape[1]}×{elevation_ds.shape[0]} pts)"
                     )
                 else:
-                    elevation_ds = elevation; x_ds = x_coords; y_ds = y_coords; texture_ds = texture_img
+                    elevation_ds = elevation
+                    x_ds         = x_coords
+                    y_ds         = y_coords
+                    texture_ds   = texture_img
 
                 fig_sat = _fig_satellite_3d(
                     elevation_ds, x_ds, y_ds, texture_ds, exag, geom_shp=geom_shp
