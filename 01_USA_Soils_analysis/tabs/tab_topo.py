@@ -41,7 +41,7 @@ def _build_contour_html(contour_features, field_geojson_str, centroid_lat, centr
       - Live elevation readout (top bar updates on hover)
       - Gradient colour legend
     """
-    cmap   = plt.cm.get_cmap("RdYlGn")
+    cmap   = plt.cm.get_cmap("terrain")
     n_stop = 8
     stops, tick_html = [], ""
     for i in range(n_stop + 1):
@@ -125,7 +125,7 @@ def _build_contour_html(contour_features, field_geojson_str, centroid_lat, centr
   // Contour lines
   L.geoJSON(CONTOURS, {{
     style: function(feat) {{
-      return {{color: feat.properties.color, weight: 2.8, opacity: 0.75}};
+      return {{color: feat.properties.color, weight: 3, opacity: 0.9}};
     }},
     onEachFeature: function(feat, layer) {{
       var elev = feat.properties.elevation_m;
@@ -294,7 +294,7 @@ def render(state: dict):
         cs = ax.contour(
             np.linspace(x_coords[0], x_coords[-1], elev_geo.shape[1]),
             np.linspace(y_coords[0], y_coords[-1], elev_geo.shape[0]),
-            elev_geo, levels=n_contours, cmap="RdYlGn", linewidths=0.8,
+            elev_geo, levels=n_contours, cmap="terrain", linewidths=0.7,
         )
         ax.clabel(cs, inline=True, fontsize=7, fmt="%.0f m", colors="white")
         ax.set_xlabel("Longitude", color="#aaa")
