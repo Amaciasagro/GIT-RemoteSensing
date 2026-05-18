@@ -30,7 +30,7 @@ Aquí ocurre la "magia" de la integración con la USDA.
 - **Gráficos de Perfil:** Visualiza cómo cambian las propiedades del suelo (arena, limo, arcilla) a medida que profundizas en el perfil (0-200 cm).
 
 
-https://github.com/user-attachments/assets/7936a2ac-11f7-4c57-b4c9-bc266ec5c363
+https://github.com/user-attachments/assets/055724de-b02f-4a6d-bfbb-f8ca62bfb4fb
 
 
 ### 3. 🏔️ Modelos Topográficos
@@ -38,11 +38,17 @@ Análisis del relieve para entender el movimiento del agua y la erosión.
 - **Curvas de Nivel:** Un mapa interactivo (Leaflet) donde puedes ver la elevación exacta pasando el mouse.
 - **Hillshade:** Un mapa de sombras que resalta las micro-pendientes del terreno.
 
+<img width="1328" height="558" alt="Captura de pantalla 2026-05-18 172835" src="https://github.com/user-attachments/assets/c7e89389-967b-4e8b-91cc-7a249099b129" />
+
 ### 4. 🌐 Proyección 3D fotorrealista
 La joya de la corona para presentaciones con clientes.
 - **Superficie 3D:** Una maqueta rápida para ver la volumetría del campo.
 - **Malla Satelital:** Proyecta imágenes de **Esri World Imagery** sobre el relieve.
 - **Novedad:** El límite de tu lote se dibuja automáticamente sobre la montaña para no perder la referencia espacial.
+- 
+<img width="1320" height="561" alt="Captura de pantalla 2026-05-18 173025" src="https://github.com/user-attachments/assets/351c01aa-90d3-4921-a42a-b814d1266091" />
+
+<img width="1306" height="547" alt="Captura de pantalla 2026-05-18 173514" src="https://github.com/user-attachments/assets/c29b14d1-3e07-4576-9a6e-fc9471cb9889" />
 
 ---
 
