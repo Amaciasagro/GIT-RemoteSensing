@@ -25,6 +25,9 @@ El primer paso es delimitar el área de estudio.
 - **Cómo usarlo:** Puedes subir un archivo `.zip` (Shapefile) o `.geojson`. También permite pegar directamente las coordenadas en formato GeoJSON.
 - **Visualización:** Verás el contorno sobre una capa de satélite para verificar que la ubicación sea correcta.
 
+https://github.com/user-attachments/assets/d52144c0-92d2-4974-91e8-53a950058296
+
+
 ### 2. 🌱 Información de Suelos
 Aquí ocurre la "magia" de la integración con la USDA.
 - **Mapas:** Genera mapas automáticos de **Clase Textural** y **MUKey** (Unidades Cartográficas).
