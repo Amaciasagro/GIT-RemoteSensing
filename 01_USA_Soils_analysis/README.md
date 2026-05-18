@@ -9,11 +9,6 @@ Esta aplicación es una herramienta profesional de **Agricultura de Precisión**
 
 ---
 
-
-![Captura de Pantalla Principal](https://via.placeholder.com/800x400?text=Captura+de+la+App+Funcionando)
-
----
-
 ## 🚀 Guía Didáctica de Uso
 
 La app está dividida en 4 módulos lógicos que siguen el flujo de trabajo de un consultor agronómico:
@@ -35,9 +30,7 @@ Aquí ocurre la "magia" de la integración con la USDA.
 - **Gráficos de Perfil:** Visualiza cómo cambian las propiedades del suelo (arena, limo, arcilla) a medida que profundizas en el perfil (0-200 cm).
 
 
-
-https://github.com/user-attachments/assets/2bc3bab2-a4c3-462d-8992-bfdc4173c282
-
+https://github.com/user-attachments/assets/7936a2ac-11f7-4c57-b4c9-bc266ec5c363
 
 
 ### 3. 🏔️ Modelos Topográficos
