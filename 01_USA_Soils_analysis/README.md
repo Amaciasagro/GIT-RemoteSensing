@@ -9,8 +9,6 @@ Esta aplicación es una herramienta profesional de **Agricultura de Precisión**
 
 ---
 
-## 📺 Demostración en Vivo
-> **TIP PARA EL PORTFOLIO:** Inserta aquí un GIF o un link a un video de YouTube mostrando cómo navegas por las pestañas.
 
 ![Captura de Pantalla Principal](https://via.placeholder.com/800x400?text=Captura+de+la+App+Funcionando)
 
