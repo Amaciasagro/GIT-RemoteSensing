@@ -28,15 +28,17 @@ El primer paso es delimitar el área de estudio.
 https://github.com/user-attachments/assets/e432f095-ed1e-4ccc-9c20-cdaa987ec408
 
 
-
-
 ### 2. 🌱 Información de Suelos
 Aquí ocurre la "magia" de la integración con la USDA.
 - **Mapas:** Genera mapas automáticos de **Clase Textural** y **MUKey** (Unidades Cartográficas).
 - **Reporte:** Al hacer clic, obtendrás una tabla detallada con pH, Materia Orgánica, CEC y más.
 - **Gráficos de Perfil:** Visualiza cómo cambian las propiedades del suelo (arena, limo, arcilla) a medida que profundizas en el perfil (0-200 cm).
 
-> 💡 **Espacio para Captura:** *Inserta aquí una imagen del mapa de texturas y el gráfico de barras apiladas.*
+
+
+https://github.com/user-attachments/assets/2bc3bab2-a4c3-462d-8992-bfdc4173c282
+
+
 
 ### 3. 🏔️ Modelos Topográficos
 Análisis del relieve para entender el movimiento del agua y la erosión.
