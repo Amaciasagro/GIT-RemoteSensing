@@ -22,6 +22,7 @@ La app está dividida en 4 módulos lógicos que siguen el flujo de trabajo de u
 El primer paso es delimitar el área de estudio. 
 - **Cómo usarlo:** Puedes subir un archivo `.zip` (Shapefile) o `.geojson`. También permite pegar directamente las coordenadas en formato GeoJSON.
 - **Visualización:** Verás el contorno sobre una capa de satélite para verificar que la ubicación sea correcta.
+
 https://github.com/user-attachments/assets/b9e5036e-d0b0-4988-9c00-ba3e002977ce
 
 
