@@ -1,3 +1,7 @@
+
+
+
+
 # 🌦️ Climate Analyzer — Dashboard Climático Interactivo
 
 **Análisis climático profesional sobre lotes agrícolas** utilizando datos **ERA5-Land (ECMWF)** procesados en tiempo real vía **Google Earth Engine**. Diseñado para agrónomos y especialistas en Teledetección que necesitan caracterizar el clima de un lote sin escribir código.
@@ -8,7 +12,8 @@
 
 <!-- Cuando tengas el video listo, reemplazá VIDEO_ID con tu ID de YouTube y descomentá estas líneas: -->
 <!-- [![Demo Climate Analyzer](https://img.youtube.com/vi/VIDEO_ID/maxresdefault.jpg)](https://www.youtube.com/watch?v=VIDEO_ID) -->
-> 📹 *Próximamente — flujo completo: definición del lote, descarga ERA5, métricas agronómicas y paneles interactivos.*
+
+https://github.com/user-attachments/assets/b5878891-908d-4510-8057-24a1d89127c2
 
 ---
 
