@@ -1,6 +1,5 @@
-
-
-
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Amaciasagro/GIT-RemoteSensing/blob/master/02_Climate_Analyzer/notebooks/02_Climatic_Analysis.ipynb)
+[![Streamlit App](https://img.shields.io/badge/-Streamlit-FF4B4B?style=flat&logo=streamlit&logoColor=white)](https://git-remotesensing-9wvgyb6zyebxouaujadipk.streamlit.app/)
 
 # 🌦️ Climate Analyzer — Dashboard Climático Interactivo
 
