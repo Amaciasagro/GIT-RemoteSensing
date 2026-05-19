@@ -72,26 +72,42 @@ Exportá la serie diaria completa en formato `.csv` con un solo clic.
 
 ---
 
-## 💻 Instalación local
+## 🛠️ Inicio Rápido
 
-```bash
-# 1. Clonar el repositorio
-git clone https://github.com/tu-usuario/climate-analyzer.git
-cd climate-analyzer
+Tienes dos opciones para usar esta herramienta:
 
-# 2. Crear entorno virtual e instalar dependencias
-python -m venv .venv
-source .venv/bin/activate        # Windows: .venv\Scripts\activate
+### Opción A: Usar la App en Línea (No requiere instalación) 🌐
+
+Accede a la aplicación directamente en tu navegador — ideal para análisis rápidos y demostraciones:
+
+**👉 Iniciar Soil Analyzer App No requiere configuración. Simplemente sube el límite de tu lote y comienza a analizar.**
+
+### Opción B: Ejecución Local (Para Desarrolladores) 💻
+
+Clona el repositorio y ejecútalo en tu propia computadora — ideal para personalización y uso sin conexión:
+
+1. **Clona el repositorio:**
+```Bash 
+    git clone https://github.com/Amaciasagro/GIT-RemoteSensing.git
+    cd GIT-RemoteSensing/02_Climate_Analyzer
+```
+
+2. **Crea un entorno virtual:**
+```Bash
+python -m venv venv
+source venv/bin/activate  # En Windows: venv\Scripts\activate
+```
+
+3. **Instala las dependencias:**
+```Bash
 pip install -r requirements.txt
+```
 
-# 3. Configurar credenciales GEE
-mkdir -p .streamlit
-cp secrets.toml .streamlit/secrets.toml
-# → Editá .streamlit/secrets.toml con tus credenciales reales
-
-# 4. Ejecutar
+4. **Ejecuta la aplicación:**
+```Bash
 streamlit run app.py
 ```
+Abre tu navegador en: http://localhost:8501
 
 ---
 
