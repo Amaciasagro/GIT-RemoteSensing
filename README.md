@@ -20,7 +20,7 @@ Motor automatizado en Python para la extracción y procesamiento de variables cl
 Flujo de geoprocesamiento vectorial y análisis espacial avanzado para cartografía edáfica.
 * **Tecnologías:** GeoPandas, Matplotlib, APIs de datos de suelos.
 * **Impacto:** Sistema de consulta automatizada y estructuración de bases de datos de suelos (integrando datos de EE.UU.). Facilita la visualización y exportación de variables críticas para el diagnóstico territorial y la categorización de ambientes.
-* ![Preview](assets/suelos.png)
+* ![Preview](<img width="754" height="571" alt="Captura de pantalla 2026-05-19 110338" src="https://github.com/user-attachments/assets/a64488e4-3cd0-4e75-99c4-f15236bd9cf8" />)
 
 ### 🌱 [Crop Remote Sensing Models](https://github.com/Amaciasagro/GIT-RemoteSensing/blob/master/03_CropMonitor/README.md)
 Módulos analíticos orientados al monitoreo fenológico y estimación de biomasa mediante teledetección.
