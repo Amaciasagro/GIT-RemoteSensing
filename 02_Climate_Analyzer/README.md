@@ -77,7 +77,7 @@ Tienes dos opciones para usar esta herramienta:
 
 Accede a la aplicación directamente en tu navegador — ideal para análisis rápidos y demostraciones:
 
-**👉[Iniciar Soil Analyzer App](https://git-remotesensing-9wvgyb6zyebxouaujadipk.streamlit.app/) No requiere configuración. Simplemente sube el límite de tu lote y comienza a analizar.**
+**👉[Iniciar Climate_Analyzer_App](https://git-remotesensing-9wvgyb6zyebxouaujadipk.streamlit.app/) No requiere configuración. Simplemente sube el límite de tu lote y comienza a analizar.**
 
 ### Opción B: Ejecución Local (Para Desarrolladores) 💻
 
