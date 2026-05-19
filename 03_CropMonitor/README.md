@@ -90,5 +90,5 @@ Para obtener estas credenciales seguí la [guía oficial de autenticación de Ea
 4. Desplegá — la conexión con GEE se establece automáticamente.
 
 ---
-Autor: Ariel Macías | Agrónomo · GIS & Remote Sensing
+Autor: Ariel Macías | Ingeniero Agrónomo · GIS & Remote Sensing
 
