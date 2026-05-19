@@ -1,3 +1,6 @@
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Amaciasagro/GIT-RemoteSensing/blob/master/03_CropMonitor/notebooks/03_Crop_Monitor.ipynb)
+[![Streamlit App](https://img.shields.io/badge/-Streamlit-FF4B4B?style=flat&logo=streamlit&logoColor=white)](https://git-remotesensing-9wvgyb6zyebxouaujadipk.streamlit.app/)
+
 # 🌿 Crop Monitor — Dashboard Interactivo (LAI & NDVI)
 
 Este Dashboard es una herramienta profesional de monitoreo fenológico diseñada para agrónomos y especialistas en Teledetección. Permite analizar la evolución de cultivos utilizando imágenes **Sentinel-2 SR Harmonized** procesadas en tiempo real mediante **Google Earth Engine**.
