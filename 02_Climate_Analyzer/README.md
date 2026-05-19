@@ -10,9 +10,6 @@
 
 ## 🎬 Demo en video
 
-<!-- Cuando tengas el video listo, reemplazá VIDEO_ID con tu ID de YouTube y descomentá estas líneas: -->
-<!-- [![Demo Climate Analyzer](https://img.youtube.com/vi/VIDEO_ID/maxresdefault.jpg)](https://www.youtube.com/watch?v=VIDEO_ID) -->
-
 https://github.com/user-attachments/assets/b5878891-908d-4510-8057-24a1d89127c2
 
 ---
@@ -80,7 +77,7 @@ Tienes dos opciones para usar esta herramienta:
 
 Accede a la aplicación directamente en tu navegador — ideal para análisis rápidos y demostraciones:
 
-**👉 Iniciar Soil Analyzer App No requiere configuración. Simplemente sube el límite de tu lote y comienza a analizar.**
+**👉[Iniciar Soil Analyzer App](https://git-remotesensing-9wvgyb6zyebxouaujadipk.streamlit.app/) No requiere configuración. Simplemente sube el límite de tu lote y comienza a analizar.**
 
 ### Opción B: Ejecución Local (Para Desarrolladores) 💻
 
