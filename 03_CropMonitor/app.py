@@ -1,4 +1,3 @@
-
 # ============================================================
 # 🌿 Crop Monitor — Streamlit App
 # Autor: Ariel Macías | Agrónomo · GIS & Remote Sensing
@@ -82,34 +81,33 @@ LAYER_LABELS = {
 # ════════════════════════════════════════════════════════════
 # GEE — INICIALIZACIÓN
 # ════════════════════════════════════════════════════════════
-@st.cache_resource
-# Modificamos para que acepte el argumento 'project_id'
-def init_gee(project_id=None):
+def init_gee(project_name=None):
     try:
-        # Si no le pasas un ID por argumento, lo busca en secrets.toml
-        if project_id is None:
-            project_id = st.secrets.get("EARTHENGINE_PROJECT", "tu-proyecto-por-defecto")
-            
-        auth_info = st.secrets["google_auth"]
-        
-        # Creamos las credenciales
-        creds = Credentials(
-            token=None,
-            refresh_token=auth_info["refresh_token"],
-            client_id=auth_info["client_id"],
-            client_secret=auth_info["client_secret"],
-            token_uri="https://oauth2.googleapis.com/token"
-        )
-        
-        # Inicializamos con el proyecto que viene por argumento
-        ee.Initialize(creds, project=project_id)
-        return True, None # Devolvemos 'ok' y 'sin error'
+        if "EARTHENGINE_TOKEN" in st.secrets:
+            token_data = json.loads(st.secrets["EARTHENGINE_TOKEN"])
+            credenciales = Credentials(
+                token=None,
+                refresh_token=token_data.get("refresh_token"),
+                token_uri="https://oauth2.googleapis.com/token",
+                client_id=token_data.get("client_id"),
+                client_secret=token_data.get("client_secret"),
+                scopes=token_data.get("scopes")
+            )
+            if project_name:
+                ee.Initialize(credentials=credenciales, project=project_name)
+            else:
+                ee.Initialize(credentials=credenciales)
+            return True, None
+        else:
+            if project_name:
+                ee.Initialize(project=project_name)
+            else:
+                ee.Initialize()
+            return True, None
+    except json.JSONDecodeError as e:
+        return False, f"Formato inválido en secrets.toml. Revisá las comillas: {e}"
     except Exception as e:
-        return False, str(e) # Devolvemos 'no ok' y el mensaje de error
-
-# Llamamos a la función al principio
-if init_gee():
-    st.success("✅ Google Earth Engine conectado exitosamente.")
+        return False, str(e)
 
 
 # ════════════════════════════════════════════════════════════
@@ -280,6 +278,7 @@ def build_folium_map(center, zoom, aoi_geojson=None,
         ).add_to(m)
 
     return m
+
 # ════════════════════════════════════════════════════════════
 # MAPA DUAL (ESPEJO) PARA COMPARAR
 # ════════════════════════════════════════════════════════════
@@ -482,14 +481,13 @@ def main():
     gee_project, anios, max_nubes, k_ext, savi_l, run_btn = render_sidebar()
 
     # ── GEE Init ──
-    # if gee_project and gee_project != st.session_state.get("gee_project"):
-    #     st.session_state["gee_project"] = gee_project
     if not st.session_state.get("gee_ok", False):
         with st.spinner("Conectando con Earth Engine..."):
             ok, err = init_gee(gee_project)
             st.session_state["gee_ok"] = ok
             if not ok:
                 st.error(f"Error GEE: {err}")
+                return
 
     # ── Análisis ──
     if run_btn and st.session_state["gee_ok"] and st.session_state["aoi"]:
