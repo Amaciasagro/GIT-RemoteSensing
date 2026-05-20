@@ -1,4 +1,7 @@
-# 🌦️ Climate Analyzer — ERA5 + CHIRPS
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Amaciasagro/GIT-RemoteSensing/blob/master/02_Climate_Analyzer/notebooks/02_Climatic_Analysis.ipynb)
+[![Streamlit App](https://img.shields.io/badge/-Streamlit-FF4B4B?style=flat&logo=streamlit&logoColor=white)](https://git-remotesensing-9wvgyb6zyebxouaujadipk.streamlit.app/)
+
+# 🌦️ Climate Analyzer — Dashboard Climático Interactivo
 
 **Análisis climático agrónomico espacial con Google Earth Engine y Streamlit**  
 *Autor: Ariel Macías — Ingeniero Agrónomo & Analista SIG*
@@ -7,12 +10,7 @@
 
 ## ¿Qué hace esta app?
 
-Climate Analyzer es una herramienta profesional de análisis climático que combina dos de las fuentes de datos satelitales más robustas del mundo:
-
-- **ERA5-Land (ECMWF)** — temperatura, viento, radiación, evaporación, ~11 km/día
-- **CHIRPS (UCSB-CHG)** — precipitación, ~5 km/día, desde 1981 a la actualidad
-
-El flujo de trabajo es simple: **definís uno o más polígonos** (lotes, parcelas, áreas de monitoreo) y la app extrae, procesa y visualiza los datos para ese ámbito geográfico exacto.
+https://github.com/user-attachments/assets/b5878891-908d-4510-8057-24a1d89127c2
 
 ---
 
@@ -52,42 +50,72 @@ El flujo de trabajo es simple: **definís uno o más polígonos** (lotes, parcel
 
 ---
 
-## Instalación
+## 🛠️ Tecnologías
 
-```bash
-git clone <repo>
-cd climate_analyzer
-pip install -r requirements.txt
-```
-
-### Configurar credenciales GEE
-
-Creá el archivo `.streamlit/secrets.toml`:
-
-```toml
-EARTHENGINE_PROJECT = "tu-proyecto-gee"
-
-[google_auth]
-client_id     = "xxxx.apps.googleusercontent.com"
-client_secret = "xxxx"
-refresh_token = "xxxx"
-```
-
-Para obtener el `refresh_token` usá el flujo OAuth2 de GEE:
-
-```bash
-earthengine authenticate
-```
-
-El token queda en `~/.config/earthengine/credentials`.
+| Tecnología | Rol |
+| :--- | :--- |
+| **Streamlit** | Interfaz de usuario y despliegue web |
+| **Google Earth Engine** | Acceso a ERA5-Land y cómputo espacial en la nube |
+| **ERA5-Land (ECMWF)** | Reanálisis climático global a ~11 km de resolución |
+| **Folium / Streamlit-Folium** | Mapa interactivo para definir el lote |
+| **Plotly** | Gráficos dinámicos de series temporales |
+| **GeoPandas / Shapely** | Procesamiento de geometrías vectoriales |
+| **google-auth** | Autenticación OAuth2 con Google Earth Engine |
 
 ---
 
-## Ejecución
+## 📦 Variables y métricas
 
-```bash
+| Variable / Métrica | Fuente | Unidad |
+| :--- | :--- | :--- |
+| Precipitación | ERA5-Land | mm/día |
+| T. máxima / mínima / media | ERA5-Land | °C |
+| Humedad Relativa | Calculada (punto de rocío) | % |
+| Radiación solar descendente | ERA5-Land | MJ/m²/día |
+| Velocidad de viento | ERA5-Land (u, v a 10 m) | m/s |
+| Evapotranspiración real | ERA5-Land | mm/día |
+| **ETo Penman-Monteith** | FAO-56 calculada | mm/día |
+| **Balance hídrico** | Lluvia − ETo acum. | mm |
+| **Grados Día Acumulados** | (T_med − T_base) · días | °C·día |
+
+---
+
+## 🛠️ Inicio Rápido
+
+Tienes dos opciones para usar esta herramienta:
+
+### Opción A: Usar la App en Línea (No requiere instalación) 🌐
+
+Accede a la aplicación directamente en tu navegador — ideal para análisis rápidos y demostraciones:
+
+**👉[Iniciar Climate_Analyzer_App](https://git-remotesensing-9wvgyb6zyebxouaujadipk.streamlit.app/) No requiere configuración. Simplemente sube el límite de tu lote y comienza a analizar.**
+
+### Opción B: Ejecución Local (Para Desarrolladores) 💻
+
+Clona el repositorio y ejecútalo en tu propia computadora — ideal para personalización y uso sin conexión:
+
+1. **Clona el repositorio:**
+```Bash 
+    git clone https://github.com/Amaciasagro/GIT-RemoteSensing.git
+    cd GIT-RemoteSensing/02_Climate_Analyzer
+```
+
+2. **Crea un entorno virtual:**
+```Bash
+python -m venv venv
+source venv/bin/activate  # En Windows: venv\Scripts\activate
+```
+
+3. **Instala las dependencias:**
+```Bash
+pip install -r requirements.txt
+```
+
+4. **Ejecuta la aplicación:**
+```Bash
 streamlit run app.py
 ```
+Abre tu navegador en: http://localhost:8501
 
 ---
 
