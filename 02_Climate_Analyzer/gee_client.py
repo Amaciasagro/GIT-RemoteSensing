@@ -22,35 +22,32 @@ from config import (
 # INICIALIZACIÓN
 # ════════════════════════════════════════════════════════════
 @st.cache_resource
-def init_gee():
-    """
-    Intenta inicializar GEE usando Service Account primero;
-    si no está configurada, usa Application Default Credentials (gcloud).
-    Retorna (ok: bool, metodo: str, error: str | None).
-    """
-    project_id = st.secrets.get("EARTHENGINE_PROJECT", "")
-
-    # ── Método 1: Service Account ────────────────────────────
-    if "gee_service_account" in st.secrets:
-        try:
-            sa_info = dict(st.secrets["gee_service_account"])
-            # private_key en TOML puede tener \\n literales → convertir
-            if "private_key" in sa_info:
-                sa_info["private_key"] = sa_info["private_key"].replace("\\n", "\n")
-            if not project_id:
-                project_id = sa_info.get("project_id", "")
-            scopes = [
-                "https://www.googleapis.com/auth/earthengine",
-                "https://www.googleapis.com/auth/cloud-platform",
-            ]
-            creds = service_account.Credentials.from_service_account_info(
-                sa_info, scopes=scopes
+def init_gee(project_name=None):
+    try:
+        if "EARTHENGINE_TOKEN" in st.secrets:
+            token_data = json.loads(st.secrets["EARTHENGINE_TOKEN"])
+            credenciales = Credentials(
+                token=None,
+                refresh_token=token_data.get("refresh_token"),
+                token_uri="https://oauth2.googleapis.com/token",
+                client_id=token_data.get("client_id"),      
+                client_secret=token_data.get("client_secret"),
+                scopes=token_data.get("scopes")
             )
-            ee.Initialize(creds, project=project_id)
-            return True, "service_account", None
-        except Exception as e:
-            return False, "service_account", str(e)
-
+            # Usar el proyecto si viene de la barra lateral
+            if project_name:
+                ee.Initialize(credentials=credenciales, project=project_name)
+            else:
+                ee.Initialize(credentials=credenciales)
+            return True, None  #  ¡Ahora sí devuelve los dos valores!
+        else:
+            if project_name:
+                ee.Initialize(project=project_name)
+            else:
+                ee.Initialize()
+            return True, None  # ¡Acá también!
+    except Exception as e:
+        return False, str(e)  # Si falla, manda el error para que st.error lo muestre
     # ── Método 2: Application Default Credentials (gcloud) ──
     try:
         import google.auth
