@@ -1,15 +1,6 @@
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Amaciasagro/GIT-RemoteSensing/blob/master/03_CropMonitor/notebooks/03_Crop_Monitor.ipynb)
-[![Streamlit App](https://img.shields.io/badge/-Streamlit-FF4B4B?style=flat&logo=streamlit&logoColor=white)](https://git-remotesensing-fgftb8kssxadprrx57anvp.streamlit.app/)
-
 # 🌿 Crop Monitor — Dashboard Interactivo (LAI & NDVI)
 
 Este Dashboard es una herramienta profesional de monitoreo fenológico diseñada para agrónomos y especialistas en Teledetección. Permite analizar la evolución de cultivos utilizando imágenes **Sentinel-2 SR Harmonized** procesadas en tiempo real mediante **Google Earth Engine**.
-
-## 🎬 Demo en video
-
-
-https://github.com/user-attachments/assets/5f16e574-2a01-425e-8ccd-44a193ce77e4
-
 
 ## 🚀 Funcionalidades Principales
 - **Curva Fenológica Interactiva:** Visualización de la evolución mensual de índices (NDVI, LAI, SAVI, EVI, NDWI) mediante gráficos de Plotly.
@@ -27,71 +18,21 @@ https://github.com/user-attachments/assets/5f16e574-2a01-425e-8ccd-44a193ce77e4
 | **Plotly** | Gráficos dinámicos y análisis de series temporales. |
 | **Geopandas / Shapely** | Gestión y manipulación de datos vectoriales. |
 
-## 🛠️ Inicio Rápido
+## 💻 Instalación y Uso Local
+1. Clona este repositorio.
+2. Crea un entorno virtual e instala las dependencias:
+   ```bash
+   pip install -r requirements.txt
+3. Configura tus credenciales de GEE en .streamlit/secrets.toml.
+4. Ejecuta la aplicación:
+   streamlit run app.py
 
-Tienes dos opciones para usar esta herramienta:
-
-### Opción A: Usar la App en Línea (No requiere instalación) 🌐
-
-Accede a la aplicación directamente en tu navegador — ideal para análisis rápidos y demostraciones:
-
-**👉[Iniciar CropMonitor_App](https://git-remotesensing-fgftb8kssxadprrx57anvp.streamlit.app/) No requiere configuración. Simplemente sube el límite de tu lote y comienza a analizar.**
-
-### Opción B: Ejecución Local (Para Desarrolladores) 💻
-
-Clona el repositorio y ejecútalo en tu propia computadora — ideal para personalización y uso sin conexión:
-
-1. **Clona el repositorio:**
-```Bash 
-    git clone https://github.com/Amaciasagro/GIT-RemoteSensing.git
-    cd GIT-RemoteSensing/03_CropMonitor
-```
-
-2. **Crea un entorno virtual:**
-```Bash
-python -m venv venv
-source venv/bin/activate  # En Windows: venv\Scripts\activate
-```
-
-3. **Instala las dependencias:**
-```Bash
-pip install -r requirements.txt
-```
-
-4. **Ejecuta la aplicación:**
-```Bash
-streamlit run app.py
-```
-Abre tu navegador en: http://localhost:8501
+🌐 DESPLIEGUE EN STREAMLIT CLOUD
+Para desplegar esta app de forma segura, asegúrate de:
+1. Tener un archivo .gitignore que incluya .streamlit/secrets.toml y cualquier archivo de credenciales locales.
+2. Subir el código a GitHub.
+3. En el panel de Advanced Settings de Streamlit Cloud, copiar y pegar el contenido de tus secretos para que la conexión con GEE funcione en la nube.
 
 ---
-
-## 🔑 Configuración de credenciales GEE
-
-Creá el archivo `.streamlit/secrets.toml` con la siguiente estructura:
-
-```toml
-EARTHENGINE_PROJECT = "tu-proyecto-gee-123456"
-
-[google_auth]
-refresh_token = "tu-refresh-token"
-client_id     = "tu-client-id.apps.googleusercontent.com"
-client_secret = "tu-client-secret"
-```
-
-> ⚠️ **Nunca subas este archivo a GitHub.** Incluí `.streamlit/secrets.toml` en tu `.gitignore`.
-
-Para obtener estas credenciales seguí la [guía oficial de autenticación de Earth Engine](https://developers.google.com/earth-engine/guides/auth).
-
----
-
-## ☁️ Despliegue en Streamlit Cloud
-
-1. Subí el código a un repositorio de GitHub (sin el archivo de secrets).
-2. En [share.streamlit.io](https://share.streamlit.io) conectá tu repo.
-3. En **Advanced Settings → Secrets** pegá el contenido de tu `secrets.toml`.
-4. Desplegá — la conexión con GEE se establece automáticamente.
-
----
-Autor: Ariel Macías | Ingeniero Agrónomo · GIS & Remote Sensing
+Autor: Ariel Macías | Agrónomo · GIS & Remote Sensing
 
