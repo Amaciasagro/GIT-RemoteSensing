@@ -83,30 +83,23 @@ LAYER_LABELS = {
 # ════════════════════════════════════════════════════════════
 def init_gee(project_name=None):
     try:
-        if "EARTHENGINE_TOKEN" in st.secrets:
-            token_data = json.loads(st.secrets["EARTHENGINE_TOKEN"])
-            credenciales = Credentials(
-                token=None,
-                refresh_token=token_data.get("refresh_token"),
-                token_uri="https://oauth2.googleapis.com/token",
-                client_id=token_data.get("client_id"),
-                client_secret=token_data.get("client_secret"),
-                scopes=token_data.get("scopes")
-            )
-            if project_name:
-                ee.Initialize(credentials=credenciales, project=project_name)
-            else:
-                ee.Initialize(credentials=credenciales)
+        # 1. Si la app está en la Web de Streamlit, va a encontrar esto y entra como Service Account
+        if "gee_service_account" in st.secrets:
+            sa_info = dict(st.secrets["gee_service_account"])
+            credenciales = ee.ServiceAccountCredentials(sa_info["client_email"], key_data=sa_info["private_key"])
+            ee.Initialize(credentials=credenciales, project=project_name if project_name else sa_info["project_id"])
             return True, None
+        
+        # 2. Si estás en tu compu (Local), esto va a dar False y va a iniciar como lo hacías en el Notebook
         else:
             if project_name:
                 ee.Initialize(project=project_name)
             else:
                 ee.Initialize()
             return True, None
-    except json.JSONDecodeError as e:
-        return False, f"Formato inválido en secrets.toml. Revisá las comillas: {e}"
+            
     except Exception as e:
+        # Si algo falla, le avisa al resto del código devolviendo False y el error
         return False, str(e)
 
 
