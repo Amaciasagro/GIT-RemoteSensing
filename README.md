@@ -14,24 +14,24 @@ Soy **Ingeniero Agrónomo** y **Analista SIG**, especializado en traducir necesi
 Motor automatizado en Python para la extracción y procesamiento de variables climáticas satelitales.
 * **Tecnologías:** Google Earth Engine (GEE), Python (Pandas, Shapely).
 * **Impacto:** Implementación de un modelo algorítmico híbrido (ERA5 + CHIRPS) que optimiza la precisión en el cálculo de la Evapotranspiración (ETo de Penman-Monteith) y balances hídricos a escala de lote.
-* ![Preview](<img width="1365" height="767" alt="Captura de pantalla 2026-05-21 151222" src="https://github.com/user-attachments/assets/0111b022-ca59-4e07-9fbe-99ec3f0678bb" />)
-* ![Preview](<img width="1365" height="767" alt="Captura de pantalla 2026-05-21 152414" src="https://github.com/user-attachments/assets/07f4d658-5997-4033-8ad5-86f51e42475b" />)
+* ![Preview](<img width="1365" height="767" alt="Image" src="https://github.com/user-attachments/assets/aff75ae6-4f2e-4d8d-ba8a-b158e1c8fb46" />)
+* ![Preview](<img width="1365" height="767" alt="Image" src="https://github.com/user-attachments/assets/6b9fceb9-5543-4748-8759-974d2b36d735" />)
 
 
 ### 🗺️ [Soils Spatial Analysis Module](https://github.com/Amaciasagro/GIT-RemoteSensing/blob/master/01_USA_Soils_analysis/README.md)
 Flujo de geoprocesamiento vectorial y análisis espacial avanzado para cartografía edáfica.
 * **Tecnologías:** GeoPandas, Matplotlib, APIs de datos de suelos.
 * **Impacto:** Sistema de consulta automatizada y estructuración de bases de datos de suelos (integrando datos de EE.UU.). Facilita la visualización y exportación de variables críticas para el diagnóstico territorial y la categorización de ambientes.
-* ![Preview](<img width="754" height="571" alt="Captura de pantalla 2026-05-19 110338" src="https://github.com/user-attachments/assets/63a6b57d-4e90-400f-8d38-06bd3ca1b4dd" />)
-* ![Preview](<img width="1320" height="561" alt="Captura de pantalla 2026-05-18 173025" src="https://github.com/user-attachments/assets/3d833634-65d4-47d3-9af7-086013e6c951" />)
+* ![Preview](<img width="754" height="571" alt="Image" src="https://github.com/user-attachments/assets/8c18ef82-106d-454f-a7c0-f67a6e9163fa" />)
+* ![Preview](<img width="1320" height="561" alt="Image" src="https://github.com/user-attachments/assets/13dc0ba2-c4e9-4f5d-a4cd-d736c240c84e" />)
 
   
 ### 🌱 [Crop Remote Sensing Models](https://github.com/Amaciasagro/GIT-RemoteSensing/blob/master/03_CropMonitor/README.md)
 Módulos analíticos orientados al monitoreo fenológico y estimación de biomasa mediante teledetección.
 * **Tecnologías:** Python, procesamiento de bandas multiespectrales.
 * **Impacto:** Cálculo masivo de índices vegetativos (NDVI, NDWI, EVI, SAVI) y modelado del Índice de Área Foliar (IAF) para la detección temprana de anomalías y caracterización productiva.
-* ![Preview](<img width="1365" height="767" alt="Captura de pantalla 2026-05-21 152858" src="https://github.com/user-attachments/assets/15a90733-163f-4e0b-870d-8b3191c6c300" />)
-* * ![Preview](<img width="1365" height="767" alt="Captura de pantalla 2026-05-21 153008" src="https://github.com/user-attachments/assets/69996071-a08d-4ced-911d-dbc210ad98ad" />)
+* ![Preview](<img width="1365" height="767" alt="Image" src="https://github.com/user-attachments/assets/8caaaebf-30c6-4f4f-8d84-6dc4af55f128" />)
+* ![Preview](<img width="1365" height="767" alt="Image" src="https://github.com/user-attachments/assets/9e5d7c70-cb1a-415e-9ee3-92a0dcfef364" />)
 
 ---
 
