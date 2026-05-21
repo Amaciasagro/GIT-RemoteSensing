@@ -10,7 +10,7 @@ Soy **Ingeniero Agrónomo** y **Analista SIG**, especializado en traducir necesi
 
 ## 🚀 Proyectos Destacados
 
-### 🌦️ [AgroClimatic Data Pipeline](https://github.com/Amaciasagro/GIT-RemoteSensing/blob/master/02_Climate_Analyzer/README.md)
+## 🌦️ [AgroClimatic Data Pipeline](https://github.com/Amaciasagro/GIT-RemoteSensing/blob/master/02_Climate_Analyzer/README.md)
 Motor automatizado en Python para la extracción y procesamiento de variables climáticas satelitales.
 * **Tecnologías:** Google Earth Engine (GEE), Python (Pandas, Shapely).
 * **Impacto:** Implementación de un modelo algorítmico híbrido (ERA5 + CHIRPS) que optimiza la precisión en el cálculo de la Evapotranspiración (ETo de Penman-Monteith) y balances hídricos a escala de lote.
@@ -22,7 +22,7 @@ Motor automatizado en Python para la extracción y procesamiento de variables cl
 * ![Mapas temáticos](02_Climate_Analyzer/assets/image2.png)
 
 
-### 🗺️ [Soils Spatial Analysis Module](https://github.com/Amaciasagro/GIT-RemoteSensing/blob/master/01_USA_Soils_analysis/README.md)
+## 🗺️ [Soils Spatial Analysis Module](https://github.com/Amaciasagro/GIT-RemoteSensing/blob/master/01_USA_Soils_analysis/README.md)
 Flujo de geoprocesamiento vectorial y análisis espacial avanzado para cartografía edáfica.
 * **Tecnologías:** GeoPandas, Matplotlib, APIs de datos de suelos.
 * **Impacto:** Sistema de consulta automatizada y estructuración de bases de datos de suelos (integrando datos de EE.UU.). Facilita la visualización y exportación de variables críticas para el diagnóstico territorial y la categorización de ambientes.
@@ -35,7 +35,7 @@ Flujo de geoprocesamiento vectorial y análisis espacial avanzado para cartograf
 * ![Proyección topográfica 3D](01_USA_Soils_analysis/assets/image2.png)
 
   
-### 🌱 [Crop Remote Sensing Models](https://github.com/Amaciasagro/GIT-RemoteSensing/blob/master/03_CropMonitor/README.md)
+## 🌱 [Crop Remote Sensing Models](https://github.com/Amaciasagro/GIT-RemoteSensing/blob/master/03_CropMonitor/README.md)
 Módulos analíticos orientados al monitoreo fenológico y estimación de biomasa mediante teledetección.
 * **Tecnologías:** Python, procesamiento de bandas multiespectrales.
 * **Impacto:** Cálculo masivo de índices vegetativos (NDVI, NDWI, EVI, SAVI) y modelado del Índice de Área Foliar (IAF) para la detección temprana de anomalías y caracterización productiva.
