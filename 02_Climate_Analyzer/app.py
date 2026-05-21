@@ -66,15 +66,11 @@ for key, val in DEFAULTS.items():
 # GEE — Inicialización
 # ════════════════════════════════════════════════════════════
 if not st.session_state["gee_ok"]:
-    ok, metodo, err = init_gee()
+    ok, err = init_gee()  # 👈 Cambiado: antes tenías ok, metodo, err
     st.session_state["gee_ok"] = ok
     if not ok:
-        st.error(f"❌ Error al conectar con Google Earth Engine ({metodo}): {err}")
-        st.info(
-            "Configurá las credenciales en `.streamlit/secrets.toml`. "
-            "Podés usar **Service Account** (`[gee_service_account]`) "
-            "o dejar que detecte **Application Default Credentials** (gcloud)."
-        )
+        st.error(f"❌ Error al conectar con Google Earth Engine: {err}")
+        st.info("Verificá las credenciales en los Secrets de Streamlit.")
         st.stop()
 
 
