@@ -22,35 +22,21 @@ from config import (
 # INICIALIZACIÓN
 # ════════════════════════════════════════════════════════════
 @st.cache_resource
-def init_gee():
-    """
-    Intenta inicializar GEE usando Service Account primero;
-    si no está configurada, usa Application Default Credentials (gcloud).
-    Retorna (ok: bool, metodo: str, error: str | None).
-    """
-    project_id = st.secrets.get("EARTHENGINE_PROJECT", "")
-
-    # ── Método 1: Service Account ────────────────────────────
-    if "gee_service_account" in st.secrets:
-        try:
+def init_gee(project_name=None):
+    try:
+        # Si encuentra la Service Account en los secretos de la web, entra directo
+        if "gee_service_account" in st.secrets:
             sa_info = dict(st.secrets["gee_service_account"])
-            # private_key en TOML puede tener \\n literales → convertir
-            if "private_key" in sa_info:
-                sa_info["private_key"] = sa_info["private_key"].replace("\\n", "\n")
-            if not project_id:
-                project_id = sa_info.get("project_id", "")
-            scopes = [
-                "https://www.googleapis.com/auth/earthengine",
-                "https://www.googleapis.com/auth/cloud-platform",
-            ]
-            creds = service_account.Credentials.from_service_account_info(
-                sa_info, scopes=scopes
-            )
-            ee.Initialize(creds, project=project_id)
-            return True, "service_account", None
-        except Exception as e:
-            return False, "service_account", str(e)
-
+            credenciales = ee.ServiceAccountCredentials(sa_info["client_email"], key_data=sa_info["private_key"])
+            ee.Initialize(credentials=credenciales, project=project_name if project_name else sa_info["project_id"])
+            return True, None
+        else:
+            # Fallback por si corrés en local sin el bloque estructurado
+            ee.Initialize(project=project_name if project_name else None)
+            return True, None
+    except Exception as e:
+        return False, str(e)
+    
     # ── Método 2: Application Default Credentials (gcloud) ──
     try:
         import google.auth
