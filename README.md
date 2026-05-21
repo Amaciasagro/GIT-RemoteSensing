@@ -22,16 +22,16 @@ Motor automatizado en Python para la extracción y procesamiento de variables cl
 Flujo de geoprocesamiento vectorial y análisis espacial avanzado para cartografía edáfica.
 * **Tecnologías:** GeoPandas, Matplotlib, APIs de datos de suelos.
 * **Impacto:** Sistema de consulta automatizada y estructuración de bases de datos de suelos (integrando datos de EE.UU.). Facilita la visualización y exportación de variables críticas para el diagnóstico territorial y la categorización de ambientes.
-* ![Mapas temáticos por atributo](01_USA_Soils_analysis/assets/Captura de pantalla 2026-05-19 110338.png)
-* ![Proyección topográfica 3D](01_USA_Soils_analysis/assets/Captura de pantalla 2026-05-18 173025.png)
+* ![Mapas temáticos por atributo](01_USA_Soils_analysis/assets/image1.png)
+* ![Proyección topográfica 3D](01_USA_Soils_analysis/assets/image2.png)
 
   
 ### 🌱 [Crop Remote Sensing Models](https://github.com/Amaciasagro/GIT-RemoteSensing/blob/master/03_CropMonitor/README.md)
 Módulos analíticos orientados al monitoreo fenológico y estimación de biomasa mediante teledetección.
 * **Tecnologías:** Python, procesamiento de bandas multiespectrales.
 * **Impacto:** Cálculo masivo de índices vegetativos (NDVI, NDWI, EVI, SAVI) y modelado del Índice de Área Foliar (IAF) para la detección temprana de anomalías y caracterización productiva.
-* ![Calculo de índices de vegetación y curva interactiva](03_CropMonitor/assets/Captura de pantalla 2026-05-21 152414.png)
-* ![Comparación entre uno o más lotes](03_CropMonitor/assets/Captura de pantalla 2026-05-21 153008.png)
+* ![Calculo de índices de vegetación y curva interactiva](03_CropMonitor/assets/image1.png)
+* ![Comparación entre uno o más lotes](03_CropMonitor/assets/image2.png)
 
 ---
 
