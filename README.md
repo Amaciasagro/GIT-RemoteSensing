@@ -14,8 +14,8 @@ Soy **Ingeniero Agrónomo** y **Analista SIG**, especializado en traducir necesi
 Motor automatizado en Python para la extracción y procesamiento de variables climáticas satelitales.
 * **Tecnologías:** Google Earth Engine (GEE), Python (Pandas, Shapely).
 * **Impacto:** Implementación de un modelo algorítmico híbrido (ERA5 + CHIRPS) que optimiza la precisión en el cálculo de la Evapotranspiración (ETo de Penman-Monteith) y balances hídricos a escala de lote.
-* ![Análisis estadístico](02_Climate_Analyzer/assets/Captura de pantalla 2026-05-21 152858.png)
-* ![Mapas temáticos](02_Climate_Analyzer/assets/2026-05-21 151222.png)
+* ![Análisis estadístico](02_Climate_Analyzer/assets/image1.png)
+* ![Mapas temáticos](02_Climate_Analyzer/assets/image2.png)
 
 
 ### 🗺️ [Soils Spatial Analysis Module](https://github.com/Amaciasagro/GIT-RemoteSensing/blob/master/01_USA_Soils_analysis/README.md)
