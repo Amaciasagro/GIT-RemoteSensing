@@ -1,4 +1,4 @@
-# 🌍 AgTech & GeoSpatial Data Science Portfolio
+# AgTech & GeoSpatial Data Science Portfolio
 
 **Transformando datos espaciales y climáticos en soluciones agronómicas inteligentes.**
 
@@ -8,7 +8,7 @@ Soy **Ingeniero Agrónomo** y **Analista SIG**, especializado en traducir necesi
 
 ---
 
-## 🚀 Proyectos Destacados
+## Proyectos Destacados
 
 ## 🌦️ [AgroClimatic Data Pipeline](https://github.com/Amaciasagro/GIT-RemoteSensing/blob/master/02_Climate_Analyzer/README.md)
 Motor automatizado en Python para la extracción y procesamiento de variables climáticas satelitales.
