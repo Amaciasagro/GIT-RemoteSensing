@@ -1,4 +1,4 @@
-# 🌱 Soil Analyzer: Advanced USA Soil & Topographic Mapping
+# Soil Analyzer: Advanced USA Soil & Topographic Mapping
 
 **Author:** Ariel Macías | Agronomist Engineer · GIS & Remote Sensing Data Scientist
 
@@ -9,7 +9,7 @@ This application is a professional **Precision Agriculture** tool designed for d
 
 ---
 
-## 🚀 User Guide
+## User Guide
 
 The app is divided into 4 logical modules that follow an agronomic consultant's workflow:
 
