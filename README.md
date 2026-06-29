@@ -73,4 +73,4 @@ Módulos analíticos orientados al monitoreo fenológico y estimación de biomas
 ## 📬 Contacto
 * **Ubicación:** Corrientes, Argentina (Disponible para proyectos en remoto).
 * **LinkedIn:** [Ariel Macías](https://www.linkedin.com/in/ariel-macías-509b0718a)
-* **Email:** amacias.agro@gmail.com
+* **Email:** amacias.agro@gmail.com .
