@@ -163,16 +163,16 @@ USDA-NRCS data is public domain. Esri World Imagery and AWS Terrarium tiles are 
 
 ---
 
-## 📧 Contact
+## Contact
 
 **Ariel Macías**
-- 🌐 [GitHub](https://github.com/Amaciasagro)
-- 💼 [LinkedIn](https://linkedin.com/in/your-profile)
-- 📧 Email: your.email@example.com
+- [GitHub](https://github.com/Amaciasagro)
+- [LinkedIn](https://linkedin.com/in/your-profile)
+- Email: your.email@example.com
 
 ---
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - **USDA-NRCS** for providing free access to soil data
 - **AWS** for hosting Terrarium elevation tiles
@@ -180,5 +180,3 @@ USDA-NRCS data is public domain. Esri World Imagery and AWS Terrarium tiles are 
 - **Streamlit** team for the amazing framework
 
 ---
-
-**Made with ❤️ for the agricultural community**
