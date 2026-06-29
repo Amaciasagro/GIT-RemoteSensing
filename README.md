@@ -63,17 +63,14 @@ Módulos analíticos orientados al monitoreo fenológico y estimación de biomas
 ---
 
 ## 🎓 Formación y Certificaciones
-* **Ingeniero Agrónomo** (FCA-UNNE).
-* **Auxiliar Analista SIG** (Instituto Superior Escuela de Robótica e Inglés).
+* **Ingeniero Agrónomo** (Facultad de Ciencias Agrarias - UNNE // Corrientes, Argentina).
+* **Auxiliar Analista SIG** (Instituto Superior Escuela de Robótica e Inglés // Misiones, Argentina).
 * **Fundamentals of Remote Sensing** (ARSET - NASA).
 * **Análisis de Datos con Python orientado al agro** (UNC).
 
 ---
 
 ## 📬 Contacto
-* **Ubicación:** Corrientes, Argentina (Disponible para proyectos globales y remotos).
+* **Ubicación:** Corrientes, Argentina (Disponible para proyectos en remoto).
 * **LinkedIn:** [Ariel Macías](https://www.linkedin.com/in/ariel-macías-509b0718a)
 * **Email:** amacias.agro@gmail.com
-
----
-*Este repositorio es mantenido por Ariel Jorge Macías. El código está orientado a la reproducibilidad científica y el escalado de soluciones AgTech.*
