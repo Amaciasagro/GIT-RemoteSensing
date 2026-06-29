@@ -7,7 +7,7 @@
 
 ## ¿Qué hace esta app?
 
-Climate Analyzer es una herramienta profesional de análisis climático que combina dos de las fuentes de datos satelitales más robustas del mundo:
+Climate Analyzer es una herramienta profesional de análisis climático que combina dos de las fuentes de datos satelitales más robustas actualmente:
 
 - **ERA5-Land (ECMWF)** — temperatura, viento, radiación, evaporación, ~11 km/día
 - **CHIRPS (UCSB-CHG)** — precipitación, ~5 km/día, desde 1981 a la actualidad
