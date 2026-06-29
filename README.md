@@ -2,7 +2,6 @@
 
 **Transformando datos espaciales y climáticos en soluciones agronómicas inteligentes.**
 
-Este repositorio centraliza mis desarrollos en el ámbito de la **Agricultura Digital**, con un enfoque en el procesamiento de datos multiespectrales, modelado agrometeorológico y la creación de herramientas interactivas para la toma de decisiones a campo. 
 
 Soy **Ingeniero Agrónomo** y **Analista SIG**, especializado en traducir necesidades agronómicas complejas en flujos de trabajo (*pipelines*) automatizados y productos mínimos viables (MVPs).
 
@@ -21,6 +20,8 @@ Motor automatizado en Python para la extracción y procesamiento de variables cl
 ### Mapas temáticos
 * ![Mapas temáticos](02_Climate_Analyzer/assets/image2.png)
 
+---
+---
 
 ## 🗺️ [Soils Spatial Analysis Module](https://github.com/Amaciasagro/GIT-RemoteSensing/blob/master/01_USA_Soils_analysis/README.md)
 Flujo de geoprocesamiento vectorial y análisis espacial avanzado para cartografía edáfica.
@@ -34,7 +35,9 @@ Flujo de geoprocesamiento vectorial y análisis espacial avanzado para cartograf
 ### Proyección topográfica 3D
 * ![Proyección topográfica 3D](01_USA_Soils_analysis/assets/image2.png)
 
-  
+---
+---
+
 ## 🌱 [Crop Remote Sensing Models](https://github.com/Amaciasagro/GIT-RemoteSensing/blob/master/03_CropMonitor/README.md)
 Módulos analíticos orientados al monitoreo fenológico y estimación de biomasa mediante teledetección.
 * **Tecnologías:** Python, procesamiento de bandas multiespectrales.
@@ -47,6 +50,7 @@ Módulos analíticos orientados al monitoreo fenológico y estimación de biomas
 ### Comparación entre uno o más lotes  
 * ![Comparación entre uno o más lotes](03_CropMonitor/assets/image2.png)
 
+---
 ---
 
 ## 🛠️ Stack Tecnológico
