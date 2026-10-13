@@ -1,76 +1,76 @@
 # AgTech & GeoSpatial Data Science Portfolio
 
-**Transformando datos espaciales y climáticos en soluciones agronómicas inteligentes.**
+**Turning spatial and climate data into intelligent agronomic solutions.**
 
 
-Soy **Ingeniero Agrónomo** y **Analista SIG**, especializado en traducir necesidades agronómicas complejas en flujos de trabajo (*pipelines*) automatizados y productos mínimos viables (MVPs).
+I am an **Agronomist (Agricultural Engineer)** and **GIS Analyst**, specialized in translating complex agronomic needs into automated workflows (*pipelines*) and minimum viable products (MVPs).
 
 ---
 
-## Proyectos Destacados
+## Featured Projects
 
 ## 🌦️ [AgroClimatic Data Pipeline](https://github.com/Amaciasagro/GIT-RemoteSensing/blob/master/02_Climate_Analyzer/README.md)
-Motor automatizado en Python para la extracción y procesamiento de variables climáticas satelitales.
-* **Tecnologías:** Google Earth Engine (GEE), Python (Pandas, Shapely).
-* **Impacto:** Implementación de un modelo algorítmico híbrido (ERA5 + CHIRPS) que optimiza la precisión en el cálculo de la Evapotranspiración (ETo de Penman-Monteith) y balances hídricos a escala de lote.
+Automated Python engine for extracting and processing satellite-derived climate variables.
+* **Technologies:** Google Earth Engine (GEE), Python (Pandas, Shapely).
+* **Impact:** Implementation of a hybrid algorithmic model (ERA5 + CHIRPS) that improves the accuracy of reference evapotranspiration (Penman-Monteith ETo) and water balance calculations at field scale.
 
-### Análisis estadístico
-* ![Análisis estadístico](02_Climate_Analyzer/assets/image1.png)
+### Statistical analysis
+* ![Statistical analysis](02_Climate_Analyzer/assets/image1.png)
 
-### Mapas temáticos
-* ![Mapas temáticos](02_Climate_Analyzer/assets/image2.png)
+### Thematic maps
+* ![Thematic maps](02_Climate_Analyzer/assets/image2.png)
 
 ---
 ---
 
 ## 🗺️ [Soils Spatial Analysis Module](https://github.com/Amaciasagro/GIT-RemoteSensing/blob/master/01_USA_Soils_analysis/README.md)
-Flujo de geoprocesamiento vectorial y análisis espacial avanzado para cartografía edáfica.
-* **Tecnologías:** GeoPandas, Matplotlib, APIs de datos de suelos.
-* **Impacto:** Sistema de consulta automatizada y estructuración de bases de datos de suelos (integrando datos de EE.UU.). Facilita la visualización y exportación de variables críticas para el diagnóstico territorial y la categorización de ambientes.
+Vector geoprocessing and advanced spatial analysis workflow for soil cartography.
+* **Technologies:** GeoPandas, Matplotlib, soil data APIs.
+* **Impact:** Automated query system and structured soil databases (integrating U.S. data). Facilitates the visualization and export of key variables for territorial diagnosis and environment classification.
 
 
-### Mapas temáticos por atributo  
-* ![Mapas temáticos por atributo](01_USA_Soils_analysis/assets/image1.png)
+### Thematic maps by attribute  
+* ![Thematic maps by attribute](01_USA_Soils_analysis/assets/image1.png)
 
-### Proyección topográfica 3D
-* ![Proyección topográfica 3D](01_USA_Soils_analysis/assets/image2.png)
+### 3D topographic projection
+* ![3D topographic projection](01_USA_Soils_analysis/assets/image2.png)
 
 ---
 ---
 
 ## 🌱 [Crop Remote Sensing Models](https://github.com/Amaciasagro/GIT-RemoteSensing/blob/master/03_CropMonitor/README.md)
-Módulos analíticos orientados al monitoreo fenológico y estimación de biomasa mediante teledetección.
-* **Tecnologías:** Python, procesamiento de bandas multiespectrales.
-* **Impacto:** Cálculo masivo de índices vegetativos (NDVI, NDWI, EVI, SAVI) y modelado del Índice de Área Foliar (IAF) para la detección temprana de anomalías y caracterización productiva.
+Analytical modules for phenological monitoring and biomass estimation through remote sensing.
+* **Technologies:** Python, multispectral band processing.
+* **Impact:** Large-scale calculation of vegetation indices (NDVI, NDWI, EVI, SAVI) and Leaf Area Index (LAI) modeling for early anomaly detection and productivity characterization.
 
 
-### Calculo de índices de vegetación y curva interactiva   
-* ![Calculo de índices de vegetación y curva interactiva](03_CropMonitor/assets/image1.png)
+### Vegetation index calculation and interactive curve  
+* ![Vegetation index calculation and interactive curve](03_CropMonitor/assets/image1.png)
 
-### Comparación entre uno o más lotes  
-* ![Comparación entre uno o más lotes](03_CropMonitor/assets/image2.png)
-
----
----
-
-## 🛠️ Stack Tecnológico
-
-* **Lenguajes & Entornos:** Python (Avanzado), Jupyter Notebooks, VS Code (Local), Google Colab (Cloud).
-* **Ciencia de Datos & SIG:** GeoPandas, GEE API, Pandas, Shapely, QGIS.
-* **Visualización:** Matplotlib, Folium, Streamlit, Plotly.
-* **Control de Versiones:** Git & GitHub (Desarrollo colaborativo y versionado de código).
+### Comparison between one or more fields  
+* ![Comparison between one or more fields](03_CropMonitor/assets/image2.png)
 
 ---
+---
 
-## 🎓 Formación y Certificaciones
-* **Ingeniero Agrónomo** (Facultad de Ciencias Agrarias - UNNE // Corrientes, Argentina).
-* **Auxiliar Analista SIG** (Instituto Superior Escuela de Robótica e Inglés // Misiones, Argentina).
+## 🛠️ Tech Stack
+
+* **Languages & Environments:** Python (Advanced), Jupyter Notebooks, VS Code (Local), Google Colab (Cloud).
+* **Data Science & GIS:** GeoPandas, GEE API, Pandas, Shapely, QGIS.
+* **Visualization:** Matplotlib, Folium, Streamlit, Plotly.
+* **Version Control:** Git & GitHub (collaborative development and code versioning).
+
+---
+
+## 🎓 Education & Certifications
+* **Agricultural Engineer** (Faculty of Agricultural Sciences - UNNE // Corrientes, Argentina).
+* **GIS Analyst Assistant** (Instituto Superior Escuela de Robótica e Inglés // Misiones, Argentina).
 * **Fundamentals of Remote Sensing** (ARSET - NASA).
-* **Análisis de Datos con Python orientado al agro** (UNC).
+* **Data Analysis with Python for Agriculture** (UNC).
 
 ---
 
-## 📬 Contacto
-* **Ubicación:** Corrientes, Argentina (Disponible para proyectos en remoto).
+## 📬 Contact
+* **Location:** Forest Lake, MN, USA (Available for remote projects).
 * **LinkedIn:** [Ariel Macías](https://www.linkedin.com/in/ariel-macías-509b0718a)
 * **Email:** amacias.agro@gmail.com
