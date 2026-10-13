@@ -1,200 +1,200 @@
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Amaciasagro/GIT-RemoteSensing/blob/master/02_Climate_Analyzer/notebooks/02_Climatic_Analysis.ipynb)
 [![Streamlit App](https://img.shields.io/badge/-Streamlit-FF4B4B?style=flat&logo=streamlit&logoColor=white)](https://git-remotesensing-9wvgyb6zyebxouaujadipk.streamlit.app/)
 
-# 🌦️ Climate Analyzer — Dashboard Climático Interactivo
+# 🌦️ Climate Analyzer — Interactive Climate Dashboard
 
-**Análisis climático agrónomico espacial con Google Earth Engine y Streamlit**  
-*Autor: Ariel Macías — Ingeniero Agrónomo & Analista SIG*
+**Spatial agronomic climate analysis with Google Earth Engine and Streamlit**  
+*Author: Ariel Macías — Agronomist (Agricultural Engineer) & GIS Analyst*
 
 ---
 
-## ¿Qué hace esta app?
+## What does this app do?
 
 https://github.com/user-attachments/assets/b5878891-908d-4510-8057-24a1d89127c2
 
 ---
 
-## Funcionalidades
+## Features
 
-### 📈 Tab 1 — Series Temporales (ERA5)
-- Precipitación, ETo Penman-Monteith FAO-56, temperatura mensual
-- Balance hídrico mensual (P − ETo)
-- Detalle diario del mes en curso con acumulados
-- Humedad relativa y velocidad de viento
-- Descarga de datos diarios en `.csv`
+### 📈 Tab 1 — Time Series (ERA5)
+- Precipitation, FAO-56 Penman-Monteith ETo, monthly temperature
+- Monthly water balance (P − ETo)
+- Daily detail of the current month with accumulated values
+- Relative humidity and wind speed
+- Download of daily data as `.csv`
 
-### 🌧️ Tab 2 — Anomalías CHIRPS
-- Compara la precipitación del período contra el promedio histórico de los últimos 20 años
-- Mapa temático: tonos rojos = déficit / azules = exceso
-- Anomalía absoluta (mm) y porcentual (%)
-- Estadísticas zonales por lote: media, mínimo, máximo
+### 🌧️ Tab 2 — CHIRPS Anomalies
+- Compares the period's precipitation against the historical average of the last 20 years
+- Thematic map: red tones = deficit / blue tones = excess
+- Absolute (mm) and percentage (%) anomaly
+- Zonal statistics per field: mean, minimum, maximum
 
-### 💧 Tab 3 — Balance Hídrico Espacial
-- Combina CHIRPS y ERA5 píxel a píxel para calcular P − ETo
-- ETo estimada con Hargreaves-Samani (raster)
-- Tres capas visualizables: balance, precipitación, ETo
-- Ideal para zonificar necesidad de riego y heterogeneidad intra-lote
+### 💧 Tab 3 — Spatial Water Balance
+- Combines CHIRPS and ERA5 pixel by pixel to calculate P − ETo
+- ETo estimated with Hargreaves-Samani (raster)
+- Three viewable layers: balance, precipitation, ETo
+- Ideal for zoning irrigation needs and within-field heterogeneity
 
-### 🌡️ Tab 4 — Riesgo Térmico
-- Conteo de días con **helada** (Tmin < umbral ajustable) por píxel
-- Conteo de días con **calor extremo** (Tmax > umbral ajustable) por píxel
-- Umbrales configurables desde la barra lateral
-- Niveles de alerta automáticos (bajo / moderado / alto)
+### 🌡️ Tab 4 — Thermal Risk
+- Count of **frost** days (Tmin < adjustable threshold) per pixel
+- Count of **extreme heat** days (Tmax > adjustable threshold) per pixel
+- Thresholds configurable from the sidebar
+- Automatic alert levels (low / moderate / high)
 
-### 🔀 Tab 5 — Comparación de Lotes
-- Tabla comparativa con todas las métricas agronómicas
-- Gráficos de precipitación, balance y temperatura superpuestos
-- Gráfico de radar normalizado multi-lote
-- Conclusiones automáticas (lote con más lluvia, mejor balance, mayor GDA, etc.)
-- Descarga de tabla comparativa en `.csv`
+### 🔀 Tab 5 — Field Comparison
+- Comparison table with all agronomic metrics
+- Overlaid charts of precipitation, balance and temperature
+- Normalized multi-field radar chart
+- Automatic conclusions (field with the most rainfall, best balance, highest GDD, etc.)
+- Download of the comparison table as `.csv`
 
 ---
 
-## 🛠️ Tecnologías
+## 🛠️ Technologies
 
-| Tecnología | Rol |
+| Technology | Role |
 | :--- | :--- |
-| **Streamlit** | Interfaz de usuario y despliegue web |
-| **Google Earth Engine** | Acceso a ERA5-Land y cómputo espacial en la nube |
-| **ERA5-Land (ECMWF)** | Reanálisis climático global a ~11 km de resolución |
-| **Folium / Streamlit-Folium** | Mapa interactivo para definir el lote |
-| **Plotly** | Gráficos dinámicos de series temporales |
-| **GeoPandas / Shapely** | Procesamiento de geometrías vectoriales |
-| **google-auth** | Autenticación OAuth2 con Google Earth Engine |
+| **Streamlit** | User interface and web deployment |
+| **Google Earth Engine** | Access to ERA5-Land and cloud-based spatial computing |
+| **ERA5-Land (ECMWF)** | Global climate reanalysis at ~11 km resolution |
+| **Folium / Streamlit-Folium** | Interactive map for defining the field |
+| **Plotly** | Dynamic time series charts |
+| **GeoPandas / Shapely** | Vector geometry processing |
+| **google-auth** | OAuth2 authentication with Google Earth Engine |
 
 ---
 
-## 📦 Variables y métricas
+## 📦 Variables and Metrics
 
-| Variable / Métrica | Fuente | Unidad |
+| Variable / Metric | Source | Unit |
 | :--- | :--- | :--- |
-| Precipitación | ERA5-Land | mm/día |
-| T. máxima / mínima / media | ERA5-Land | °C |
-| Humedad Relativa | Calculada (punto de rocío) | % |
-| Radiación solar descendente | ERA5-Land | MJ/m²/día |
-| Velocidad de viento | ERA5-Land (u, v a 10 m) | m/s |
-| Evapotranspiración real | ERA5-Land | mm/día |
-| **ETo Penman-Monteith** | FAO-56 calculada | mm/día |
-| **Balance hídrico** | Lluvia − ETo acum. | mm |
-| **Grados Día Acumulados** | (T_med − T_base) · días | °C·día |
+| Precipitation | ERA5-Land | mm/day |
+| Max / min / mean temperature | ERA5-Land | °C |
+| Relative humidity | Calculated (dew point) | % |
+| Downward solar radiation | ERA5-Land | MJ/m²/day |
+| Wind speed | ERA5-Land (u, v at 10 m) | m/s |
+| Actual evapotranspiration | ERA5-Land | mm/day |
+| **Penman-Monteith ETo** | FAO-56 calculated | mm/day |
+| **Water balance** | Rainfall − accumulated ETo | mm |
+| **Growing Degree Days** | (T_mean − T_base) · days | °C·day |
 
 ---
 
-## 🛠️ Inicio Rápido
+## 🛠️ Quick Start
 
-Tienes dos opciones para usar esta herramienta:
+You have two options for using this tool:
 
-### Opción A: Usar la App en Línea (No requiere instalación) 🌐
+### Option A: Use the Online App (No installation required) 🌐
 
-Accede a la aplicación directamente en tu navegador — ideal para análisis rápidos y demostraciones:
+Access the application directly in your browser — ideal for quick analyses and demos:
 
-**👉[Iniciar Climate_Analyzer_App](https://git-remotesensing-9wvgyb6zyebxouaujadipk.streamlit.app/) No requiere configuración. Simplemente sube el límite de tu lote y comienza a analizar.**
+**👉[Launch Climate_Analyzer_App](https://git-remotesensing-9wvgyb6zyebxouaujadipk.streamlit.app/) No setup required. Simply upload your field boundary and start analyzing.**
 
-### Opción B: Ejecución Local (Para Desarrolladores) 💻
+### Option B: Run Locally (For Developers) 💻
 
-Clona el repositorio y ejecútalo en tu propia computadora — ideal para personalización y uso sin conexión:
+Clone the repository and run it on your own computer — ideal for customization and offline use:
 
-1. **Clona el repositorio:**
+1. **Clone the repository:**
 ```Bash 
     git clone https://github.com/Amaciasagro/GIT-RemoteSensing.git
     cd GIT-RemoteSensing/02_Climate_Analyzer
 ```
 
-2. **Crea un entorno virtual:**
+2. **Create a virtual environment:**
 ```Bash
 python -m venv venv
-source venv/bin/activate  # En Windows: venv\Scripts\activate
+source venv/bin/activate  # On Windows: venv\Scripts\activate
 ```
 
-3. **Instala las dependencias:**
+3. **Install the dependencies:**
 ```Bash
 pip install -r requirements.txt
 ```
 
-4. **Ejecuta la aplicación:**
+4. **Run the application:**
 ```Bash
 streamlit run app.py
 ```
-Abre tu navegador en: http://localhost:8501
+Open your browser at: http://localhost:8501
 
 ---
 
-## Estructura del proyecto
+## Project Structure
 
 ```
 climate_analyzer/
-├── app.py                  # Entry point + orquestación de tabs
-├── config.py               # Constantes, colecciones GEE, paletas, CSS
-├── gee_client.py           # Queries GEE: ERA5, CHIRPS, mapas temáticos
-├── metrics.py              # ETo PM, HR, GDA, balance (series temporales)
-├── charts.py               # Todos los gráficos Plotly
-├── map_utils.py            # Folium, mapas temáticos, carga de AOI
+├── app.py                  # Entry point + tab orchestration
+├── config.py               # Constants, GEE collections, palettes, CSS
+├── gee_client.py           # GEE queries: ERA5, CHIRPS, thematic maps
+├── metrics.py              # PM ETo, RH, GDD, balance (time series)
+├── charts.py               # All Plotly charts
+├── map_utils.py            # Folium, thematic maps, AOI loading
 ├── ui/
-│   ├── sidebar.py          # Multi-lote, parámetros, carga de archivos
-│   ├── tab_series.py       # Tab 1: Series temporales ERA5
-│   ├── tab_anomalias.py    # Tab 2: Anomalías CHIRPS
-│   ├── tab_balance.py      # Tab 3: Balance hídrico espacial
-│   ├── tab_riesgos.py      # Tab 4: Riesgo térmico (heladas/calor)
-│   └── tab_comparar.py     # Tab 5: Comparación multi-lote
+│   ├── sidebar.py          # Multi-field, parameters, file upload
+│   ├── tab_series.py       # Tab 1: ERA5 time series
+│   ├── tab_anomalias.py    # Tab 2: CHIRPS anomalies
+│   ├── tab_balance.py      # Tab 3: Spatial water balance
+│   ├── tab_riesgos.py      # Tab 4: Thermal risk (frost/heat)
+│   └── tab_comparar.py     # Tab 5: Multi-field comparison
 ├── requirements.txt
 └── README.md
 ```
 
 ---
 
-## Flujo de uso
+## Workflow
 
-1. **Abrís la app** → aparece un mapa limpio
-2. **Dibujás un polígono** en el mapa o subís un `.shp`/`.geojson`
-3. **Confirmás el lote** en la barra lateral (se guarda con nombre y color)
-4. **Repetís** para agregar más lotes (sin límite)
-5. **Presionás "Analizar lotes"** → descarga ERA5 para cada lote
-6. **Navegás los tabs** para explorar series, anomalías, balance, riesgos y comparativas
-7. **Descargás** los datos o tablas según necesites
+1. **Open the app** → a clean map appears
+2. **Draw a polygon** on the map or upload a `.shp`/`.geojson`
+3. **Confirm the field** in the sidebar (it is saved with a name and color)
+4. **Repeat** to add more fields (no limit)
+5. **Click "Analyze fields"** → downloads ERA5 data for each field
+6. **Browse the tabs** to explore series, anomalies, balance, risks and comparisons
+7. **Download** the data or tables as needed
 
 ---
 
-## Notas metodológicas
+## Methodological Notes
 
-### ETo Penman-Monteith FAO-56
-Implementación según Allen et al. (1998). Se usa para las series temporales (Tab 1 y Tab 5). Requiere: Tmax, Tmin, Tdew, radiación solar, viento a 2m.
+### FAO-56 Penman-Monteith ETo
+Implemented according to Allen et al. (1998). Used for the time series (Tab 1 and Tab 5). Requires: Tmax, Tmin, Tdew, solar radiation, wind at 2 m.
 
-### ETo Hargreaves-Samani
-Versión simplificada para el cálculo raster píxel a píxel (Tab 3). Solo requiere Tmax, Tmin y Ra (radiación extraterrestre). Apropiada para comparaciones espaciales relativas.
+### Hargreaves-Samani ETo
+Simplified version for pixel-by-pixel raster calculation (Tab 3). Requires only Tmax, Tmin and Ra (extraterrestrial radiation). Suitable for relative spatial comparisons.
 
-### Anomalía CHIRPS
-El baseline histórico usa el mismo rango de días del año (DOY) sobre los `N` años anteriores al período analizado. Esto elimina el efecto estacional y hace comparables períodos cortos.
+### CHIRPS Anomaly
+The historical baseline uses the same range of days of the year (DOY) over the `N` years preceding the analyzed period. This removes the seasonal effect and makes short periods comparable.
 
-### Resolución espacial
-| Fuente   | Resolución | Cobertura temporal |
+### Spatial Resolution
+| Source   | Resolution | Temporal coverage |
 |----------|------------|-------------------|
-| ERA5-Land | ~11 km    | 1950–presente     |
-| CHIRPS    | ~5 km     | 1981–presente     |
+| ERA5-Land | ~11 km    | 1950–present      |
+| CHIRPS    | ~5 km     | 1981–present      |
 
 ---
 
-## Dependencias principales
+## Main Dependencies
 
-| Librería | Uso |
+| Library | Use |
 |---------|-----|
-| `earthengine-api` | Queries y procesamiento GEE |
-| `streamlit` | Interfaz web |
-| `streamlit-folium` | Renderizado de mapas interactivos |
-| `folium` | Construcción de mapas Leaflet |
-| `plotly` | Gráficos interactivos |
-| `geopandas` / `shapely` | Carga y procesamiento de geometrías |
-| `pandas` / `numpy` | Manipulación de series temporales |
+| `earthengine-api` | GEE queries and processing |
+| `streamlit` | Web interface |
+| `streamlit-folium` | Rendering of interactive maps |
+| `folium` | Building Leaflet maps |
+| `plotly` | Interactive charts |
+| `geopandas` / `shapely` | Loading and processing geometries |
+| `pandas` / `numpy` | Time series manipulation |
 
 ---
 
-## Roadmap futuro
+## Future Roadmap
 
-- [ ] Exportar mapas temáticos como GeoTIFF (via `ee.batch`)
-- [ ] Timelapse animado (GIF/MP4) por semana o década
-- [ ] Integración con datos de pronóstico (GFS/ECMWF open)
-- [ ] Índices de sequía (SPI, NDVI desde Sentinel/Landsat)
-- [ ] Reporte PDF automático por lote
+- [ ] Export thematic maps as GeoTIFF (via `ee.batch`)
+- [ ] Animated timelapse (GIF/MP4) by week or decade
+- [ ] Integration with forecast data (GFS/ECMWF open)
+- [ ] Drought indices (SPI, NDVI from Sentinel/Landsat)
+- [ ] Automatic PDF report per field
 
 ---
 
-*Desarrollado con Google Earth Engine, Streamlit y datos abiertos de ECMWF y UCSB-CHG.*
+*Developed with Google Earth Engine, Streamlit and open data from ECMWF and UCSB-CHG.*

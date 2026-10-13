@@ -1,97 +1,96 @@
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Amaciasagro/GIT-RemoteSensing/blob/master/03_CropMonitor/notebooks/03_Crop_Monitor.ipynb)
 [![Streamlit App](https://img.shields.io/badge/-Streamlit-FF4B4B?style=flat&logo=streamlit&logoColor=white)](https://git-remotesensing-fgftb8kssxadprrx57anvp.streamlit.app/)
 
-# 🌿 Crop Monitor — Dashboard Interactivo (LAI & NDVI)
+# 🌿 Crop Monitor — Interactive Dashboard (LAI & NDVI)
 
-Este Dashboard es una herramienta profesional de monitoreo fenológico diseñada para agrónomos y especialistas en Teledetección. Permite analizar la evolución de cultivos utilizando imágenes **Sentinel-2 SR Harmonized** procesadas en tiempo real mediante **Google Earth Engine**.
+This dashboard is a professional phenological monitoring tool designed for agronomists and Remote Sensing specialists. It allows you to analyze crop development using **Sentinel-2 SR Harmonized** imagery processed in real time with **Google Earth Engine**.
 
-## 🎬 Demo en video
+## 🎬 Video Demo
 
 
 https://github.com/user-attachments/assets/5f16e574-2a01-425e-8ccd-44a193ce77e4
 
 
-## 🚀 Funcionalidades Principales
-- **Curva Fenológica Interactiva:** Visualización de la evolución mensual de índices (NDVI, LAI, SAVI, EVI, NDWI) mediante gráficos de Plotly.
-- **Sincronización Temporal:** Al navegar por la curva de tiempo, el mapa actualiza automáticamente tanto el índice seleccionado como la imagen satelital base del lote.
-- **Satélite Dinámico Mensual:** Visualización en Color Real (RGB) de la mejor imagen del mes seleccionado (filtrada por nubosidad), permitiendo validar visualmente los datos de los índices.
-- **Mapas Comparativos (DualMap):** Capacidad de comparar dos índices diferentes (ej. NDVI vs LAI) de forma sincronizada en pantalla dividida.
-- **Gestión de Lotes:** Dibujo manual de polígonos directamente en el mapa o carga de archivos locales (.shp en .zip o .geojson).
+## 🚀 Main Features
+- **Interactive Phenological Curve:** Visualization of the monthly evolution of indices (NDVI, LAI, SAVI, EVI, NDWI) through Plotly charts.
+- **Temporal Synchronization:** As you navigate the time curve, the map automatically updates both the selected index and the base satellite image of the field.
+- **Dynamic Monthly Satellite View:** True Color (RGB) display of the best image of the selected month (filtered by cloud cover), allowing you to visually validate the index data.
+- **Comparative Maps (DualMap):** Ability to compare two different indices (e.g. NDVI vs LAI) in a synchronized split screen.
+- **Field Management:** Manual polygon drawing directly on the map or upload of local files (.shp in .zip or .geojson).
 
-## 🛠️ Tecnologías Utilizadas
-| Tecnología | Uso en el Proyecto |
+## 🛠️ Technologies Used
+| Technology | Use in the Project |
 | :--- | :--- |
-| **Streamlit** | Interfaz de usuario y despliegue web. |
-| **Google Earth Engine (GEE)** | Procesamiento geoespacial en la nube y acceso a Sentinel-2. |
-| **Folium / Streamlit-Folium** | Visualización de mapas interactivos y capas ráster. |
-| **Plotly** | Gráficos dinámicos y análisis de series temporales. |
-| **Geopandas / Shapely** | Gestión y manipulación de datos vectoriales. |
+| **Streamlit** | User interface and web deployment. |
+| **Google Earth Engine (GEE)** | Cloud-based geospatial processing and access to Sentinel-2. |
+| **Folium / Streamlit-Folium** | Interactive map visualization and raster layers. |
+| **Plotly** | Dynamic charts and time series analysis. |
+| **Geopandas / Shapely** | Management and manipulation of vector data. |
 
-## 🛠️ Inicio Rápido
+## 🛠️ Quick Start
 
-Tienes dos opciones para usar esta herramienta:
+You have two options for using this tool:
 
-### Opción A: Usar la App en Línea (No requiere instalación) 🌐
+### Option A: Use the Online App (No installation required) 🌐
 
-Accede a la aplicación directamente en tu navegador — ideal para análisis rápidos y demostraciones:
+Access the application directly in your browser — ideal for quick analyses and demos:
 
-**👉[Iniciar CropMonitor_App](https://git-remotesensing-fgftb8kssxadprrx57anvp.streamlit.app/) No requiere configuración. Simplemente sube el límite de tu lote y comienza a analizar.**
+**👉[Launch CropMonitor_App](https://git-remotesensing-fgftb8kssxadprrx57anvp.streamlit.app/) No setup required. Simply upload your field boundary and start analyzing.**
 
-### Opción B: Ejecución Local (Para Desarrolladores) 💻
+### Option B: Run Locally (For Developers) 💻
 
-Clona el repositorio y ejecútalo en tu propia computadora — ideal para personalización y uso sin conexión:
+Clone the repository and run it on your own computer — ideal for customization and offline use:
 
-1. **Clona el repositorio:**
+1. **Clone the repository:**
 ```Bash 
     git clone https://github.com/Amaciasagro/GIT-RemoteSensing.git
     cd GIT-RemoteSensing/03_CropMonitor
 ```
 
-2. **Crea un entorno virtual:**
+2. **Create a virtual environment:**
 ```Bash
 python -m venv venv
-source venv/bin/activate  # En Windows: venv\Scripts\activate
+source venv/bin/activate  # On Windows: venv\Scripts\activate
 ```
 
-3. **Instala las dependencias:**
+3. **Install the dependencies:**
 ```Bash
 pip install -r requirements.txt
 ```
 
-4. **Ejecuta la aplicación:**
+4. **Run the application:**
 ```Bash
 streamlit run app.py
 ```
-Abre tu navegador en: http://localhost:8501
+Open your browser at: http://localhost:8501
 
 ---
 
-## 🔑 Configuración de credenciales GEE
+## 🔑 GEE Credentials Setup
 
-Creá el archivo `.streamlit/secrets.toml` con la siguiente estructura:
+Create the file `.streamlit/secrets.toml` with the following structure:
 
 ```toml
-EARTHENGINE_PROJECT = "tu-proyecto-gee-123456"
+EARTHENGINE_PROJECT = "your-gee-project-123456"
 
 [google_auth]
-refresh_token = "tu-refresh-token"
-client_id     = "tu-client-id.apps.googleusercontent.com"
-client_secret = "tu-client-secret"
+refresh_token = "your-refresh-token"
+client_id     = "your-client-id.apps.googleusercontent.com"
+client_secret = "your-client-secret"
 ```
 
-> ⚠️ **Nunca subas este archivo a GitHub.** Incluí `.streamlit/secrets.toml` en tu `.gitignore`.
+> ⚠️ **Never upload this file to GitHub.** Add `.streamlit/secrets.toml` to your `.gitignore`.
 
-Para obtener estas credenciales seguí la [guía oficial de autenticación de Earth Engine](https://developers.google.com/earth-engine/guides/auth).
-
----
-
-## ☁️ Despliegue en Streamlit Cloud
-
-1. Subí el código a un repositorio de GitHub (sin el archivo de secrets).
-2. En [share.streamlit.io](https://share.streamlit.io) conectá tu repo.
-3. En **Advanced Settings → Secrets** pegá el contenido de tu `secrets.toml`.
-4. Desplegá — la conexión con GEE se establece automáticamente.
+To obtain these credentials, follow the [official Earth Engine authentication guide](https://developers.google.com/earth-engine/guides/auth).
 
 ---
-Autor: Ariel Macías | Ingeniero Agrónomo · GIS & Remote Sensing
 
+## ☁️ Deployment on Streamlit Cloud
+
+1. Upload the code to a GitHub repository (without the secrets file).
+2. On [share.streamlit.io](https://share.streamlit.io), connect your repo.
+3. In **Advanced Settings → Secrets**, paste the contents of your `secrets.toml`.
+4. Deploy — the connection to GEE is established automatically.
+
+---
+Author: Ariel Macías | Agronomist (Agricultural Engineer) · GIS & Remote Sensing
