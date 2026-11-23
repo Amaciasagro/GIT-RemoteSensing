@@ -1,0 +1,10 @@
+streamlit>=1.36
+streamlit-folium>=0.20
+folium>=0.16
+earthengine-api>=0.1.390
+geopandas>=0.14
+shapely>=2.0
+pandas
+numpy
+plotly>=5.20
+requests
